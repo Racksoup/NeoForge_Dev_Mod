@@ -17,6 +17,8 @@ public class ModTab {
             .displayItems((params, output) -> {
                 output.accept(ModItems.MY_BLOCK_ITEM.get());
                 output.accept(ModItems.STABLE_WATER_ITEM.get());
+                output.accept(ModItems.URANIUM_ITEM.get());
+                output.accept(ModItems.TURTLE_SHELL_ITEM.get());
             })
             .build()
     );

@@ -18,4 +18,14 @@ public class ModItems {
             Item::new,
             new Item.Properties()
     );
+    public static final Supplier<Item> URANIUM_ITEM = ITEMS.registerItem(
+            "uranium",
+            Item::new,
+            new Item.Properties()
+    );
+    public static final Supplier<Item> TURTLE_SHELL_ITEM = ITEMS.registerItem(
+            "turtle_shell",
+            Item::new,
+            new Item.Properties()
+    );
 }
