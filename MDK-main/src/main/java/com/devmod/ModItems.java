@@ -1,12 +1,8 @@
 package com.devmod;
 
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import java.util.function.Supplier;
 
@@ -17,10 +13,9 @@ public class ModItems {
             "my_block",
             () -> new BlockItem(ModBlocks.MY_BLOCK.get(), new Item.Properties())
     );
-    public static final ResourceKey<Registry<Item>> ITEM_REGISTRY_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(DevMod.MODID, "dev_items"));
-    public static final Registry<Item> ITEM_REGISTRY = new RegistryBuilder<>(ITEM_REGISTRY_KEY)
-            .sync(true)
-            .defaultKey(ResourceLocation.fromNamespaceAndPath(DevMod.MODID, "mod_items"))
-            .maxId(256)
-            .create();
+    public static final Supplier<Item> STABLE_WATER_ITEM = ITEMS.registerItem(
+           "stable_water",
+            Item::new,
+            new Item.Properties()
+    );
 }

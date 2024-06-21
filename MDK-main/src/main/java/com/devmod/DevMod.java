@@ -28,18 +28,16 @@ public class DevMod
     public DevMod(IEventBus modEventBus, ModContainer modContainer)
     {
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::registerRegistries);
+//        modEventBus.addListener(this::registerRegistries);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
     }
 
-    @SubscribeEvent
-    public void registerRegistries(NewRegistryEvent event) {
-        event.register(ModItems.ITEM_REGISTRY);
-        event.register(ModBlocks.BLOCK_REGISTRY);
-    }
+//    @SubscribeEvent
+//    public void registerRegistries(NewRegistryEvent event) {
+//    }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
