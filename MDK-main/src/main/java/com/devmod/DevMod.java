@@ -1,6 +1,14 @@
 package com.devmod;
 
-import net.neoforged.neoforge.registries.NewRegistryEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -19,6 +27,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
+import java.util.Random;
+
 @Mod(DevMod.MODID)
 public class DevMod
 {
@@ -28,16 +38,25 @@ public class DevMod
     public DevMod(IEventBus modEventBus, ModContainer modContainer)
     {
         modEventBus.addListener(this::commonSetup);
-//        modEventBus.addListener(this::registerRegistries);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
+        NeoForge.EVENT_BUS.addListener(DevMod::dirtDug);
     }
 
-//    @SubscribeEvent
-//    public void registerRegistries(NewRegistryEvent event) {
-//    }
+    private static void dirtDug(BlockEvent.BreakEvent event) {
+        LOGGER.info("{}", event.getState());
+        LOGGER.info("{}", event.getState().getBlock());
+        Level level = (Level) event.getLevel();
+        BlockPos pos = event.getPos();
+
+        if (event.getState().getBlock() == Blocks.DIRT) {
+            ItemStack uraniumStack = new ItemStack(ModItems.URANIUM_ITEM.get());
+            ItemEntity uraniumEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), uraniumStack);
+            level.addFreshEntity(uraniumEntity);
+        }
+    }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
