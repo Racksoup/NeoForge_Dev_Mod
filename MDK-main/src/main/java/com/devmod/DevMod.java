@@ -1,13 +1,14 @@
 package com.devmod;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import org.slf4j.Logger;
 
@@ -42,19 +43,38 @@ public class DevMod
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
-        NeoForge.EVENT_BUS.addListener(DevMod::dirtDug);
+        NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
+        NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
     }
 
-    private static void dirtDug(BlockEvent.BreakEvent event) {
-        LOGGER.info("{}", event.getState());
-        LOGGER.info("{}", event.getState().getBlock());
+    private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
+        Player player = event.getEntity();
+        Entity entity = event.getTarget();
+        Level level = (Level) event.getLevel();
+
+        if (event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND) {
+            if (entity instanceof Turtle) {
+                ItemStack turtleShellStack = new ItemStack(ModItems.TURTLE_SHELL_ITEM.get());
+                ItemEntity turtleShellEntity = new ItemEntity(level, entity.xo, entity.yo, entity.zo, turtleShellStack);
+                level.addFreshEntity(turtleShellEntity);
+            }
+        }
+    }
+
+    private static void blockBreak(BlockEvent.BreakEvent event) {
         Level level = (Level) event.getLevel();
         BlockPos pos = event.getPos();
 
-        if (event.getState().getBlock() == Blocks.DIRT) {
+        if (event.getState().getBlock() == Blocks.COAL_BLOCK) {
             ItemStack uraniumStack = new ItemStack(ModItems.URANIUM_ITEM.get());
             ItemEntity uraniumEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), uraniumStack);
             level.addFreshEntity(uraniumEntity);
+        }
+
+        if (event.getState().getBlock() == Blocks.SNOW) {
+            ItemStack stableWaterStack = new ItemStack(ModItems.STABLE_WATER_ITEM.get());
+            ItemEntity stableWaterEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), stableWaterStack);
+            level.addFreshEntity(stableWaterEntity);
         }
     }
 
