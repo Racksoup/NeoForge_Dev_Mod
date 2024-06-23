@@ -28,13 +28,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import java.util.Random;
-
 @Mod(DevMod.MODID)
 public class DevMod
 {
     public static final String MODID = "dev_mod";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public DevMod(IEventBus modEventBus, ModContainer modContainer)
     {
@@ -45,6 +43,15 @@ public class DevMod
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
+        NeoForge.EVENT_BUS.addListener(DevMod::onPlayerInteract);
+    }
+
+    public static void onPlayerInteract(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getEntity().level().isClientSide) {
+            Minecraft minecraft = Minecraft.getInstance();
+            Player player = minecraft.player;
+            minecraft.setScreen(new ModInventoryScreen(player));
+        }
     }
 
     private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
