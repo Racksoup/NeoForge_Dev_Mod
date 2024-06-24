@@ -2,6 +2,7 @@ package com.devmod;
 
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.BlockPos;
@@ -57,8 +58,8 @@ public class DevMod
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
 //        NeoForge.EVENT_BUS.addListener(DevMod::onPlayerInteract);
-        NeoForge.EVENT_BUS.addListener(DevMod::onScreenInit);
-        NeoForge.EVENT_BUS.addListener(DevMod::onScreenRender);
+//        NeoForge.EVENT_BUS.addListener(DevMod::onScreenInit);
+//        NeoForge.EVENT_BUS.addListener(DevMod::onScreenRender);
     }
 
 //    public static void onPlayerInteract(InputEvent.Key event) {
@@ -71,24 +72,25 @@ public class DevMod
 //        }
 //    }
 
-    public static void onScreenInit(ScreenEvent.Init.Post event) {
-        Screen screen = event.getScreen();
-
-        if (screen instanceof InventoryScreen inv) {
-            event.addListener(new DevButton(inv.getGuiLeft() + 126, inv.height / 2 - 22, 20, 18));
-        }
-    }
-
-    public static void onScreenRender(ScreenEvent.Render.Post event) {
-        Screen screen = event.getScreen();
-        if (screen instanceof InventoryScreen inv) {
-            inv.renderables.forEach(widget -> {
-                if (widget instanceof DevButton button) {
-                    button.setPosition(20, 20);
-                }
-            });
-        }
-    }
+//    public static void onScreenInit(ScreenEvent.Init.Post event) {
+//        Screen screen = event.getScreen();
+//
+//        if (screen instanceof InventoryScreen inv) {
+//            event.addListener(new DevButton(inv.getGuiLeft() + 126, inv.height / 2 - 22, 20, 18));
+//            event.addListener(new StringWidget(Component.literal("Hello World!!"), Minecraft.getInstance().font));
+//        }
+//    }
+//
+//    public static void onScreenRender(ScreenEvent.Render.Post event) {
+//        Screen screen = event.getScreen();
+//        if (screen instanceof InventoryScreen inv) {
+//            inv.renderables.forEach(widget -> {
+//                if (widget instanceof DevButton button) {
+//                    button.setPosition(20, 20);
+//                }
+//            });
+//        }
+//    }
 
     private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         Player player = event.getEntity();
