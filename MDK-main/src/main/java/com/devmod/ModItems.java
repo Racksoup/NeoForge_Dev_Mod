@@ -13,6 +13,10 @@ public class ModItems {
             "my_block",
             () -> new BlockItem(ModBlocks.MY_BLOCK.get(), new Item.Properties())
     );
+    public static final Supplier<Item> MY_CRAFTING_TABLE_ITEM = ITEMS.register(
+            "my_crafting_table",
+            () -> new BlockItem(ModBlocks.MY_CRAFTING_TABLE_BLOCK.get(), new Item.Properties())
+    );
     public static final Supplier<Item> STABLE_WATER_ITEM = ITEMS.registerItem(
            "stable_water",
             Item::new,
