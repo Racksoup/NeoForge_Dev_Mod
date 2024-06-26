@@ -1,5 +1,6 @@
 package com.devmod;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
@@ -8,6 +9,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.MenuConstructor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -31,7 +33,12 @@ public class ModCraftingTable extends Block {
             if (menuProvider != null) {
                 pPlayer.openMenu(menuProvider);
                 pPlayer.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+
+                ModCraftingMenu modCraftingMenu = new ModCraftingMenu(0, pPlayer.getInventory(), ContainerLevelAccess.create(pLevel, pPos));
+                Minecraft minecraft = Minecraft.getInstance();
+                minecraft.execute(() -> minecraft.setScreen(new ModCraftingScreen(modCraftingMenu, pPlayer.getInventory())));
             }
+
             return InteractionResult.CONSUME;
         }
     }
