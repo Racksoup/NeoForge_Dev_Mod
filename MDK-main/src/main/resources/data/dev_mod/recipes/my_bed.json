@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "u": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "pattern": [
+    "uuu",
+    "uuu",
+    "uuu"
+  ],
+  "result": {
+    "item": "minecraft:stone",
+    "count": 1
+  }
+}

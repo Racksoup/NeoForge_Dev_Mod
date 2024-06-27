@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "dev_mod:block/my_crafting_table" }
+  }
+}
