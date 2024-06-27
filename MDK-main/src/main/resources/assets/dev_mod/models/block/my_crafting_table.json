@@ -1,6 +1,21 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "dev_mod:block/my_crafting_table"
-  }
+    "all": "dev_mod:block/my_crafting_table",
+    "bottom": "block/birch_planks"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "down": {"texture":  "#bottom", "cullface": "down"},
+        "up": {"uv": [12,8, 16,12], "texture": "#all", "cullface": "up"},
+        "north": {"uv": [12,12, 16,16], "texture": "#all", "cullface": "north"},
+        "south": {"uv": [8,12, 12,16], "texture": "#all", "cullface": "south"},
+        "west": {"uv": [4,12, 8,16], "texture": "#all", "cullface": "west"},
+        "east": {"uv": [0,12, 4,16], "texture": "#all", "cullface": "east"}
+      }
+    }
+  ]
 }
