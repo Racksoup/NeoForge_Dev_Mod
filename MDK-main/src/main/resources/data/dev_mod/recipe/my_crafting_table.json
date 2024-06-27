@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "u": {
+      "item": "dev_mod:uranium"
+    },
+    "s": {
+      "item": "dev_mod:stable_water"
+    },
+    "t": {
+      "item": "dev_mod:turtle_shell"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "ppp",
+    "tus",
+    "ppp"
+  ],
+  "result": {
+    "id": "dev_mod:my_crafting_table",
+    "count": 1
+  }
+}
