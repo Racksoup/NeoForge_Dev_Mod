@@ -35,6 +35,7 @@ public class DevMod
 {
     public static final String MODID = "dev_mod";
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static ModRoleData roleData;
 
     public DevMod(IEventBus modEventBus, ModContainer modContainer)
     {
@@ -45,6 +46,8 @@ public class DevMod
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
+
+        roleData = new ModRoleData();
     }
 
     private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
