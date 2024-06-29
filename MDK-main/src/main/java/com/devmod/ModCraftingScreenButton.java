@@ -9,11 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 public class ModCraftingScreenButton extends Button {
     private static final ResourceLocation BUTTON_TEXTURE = ResourceLocation.fromNamespaceAndPath(DevMod.MODID, "textures/buttons/mod_crafting_screen_button.png");
 
-    public ModCraftingScreenButton(int x, int y, int width, int height) {
-        super(x, y, width, height, Component.empty(),
-                button -> {
-                    DevMod.LOGGER.info("ModCraftingScreenButton");
-                }, Button.DEFAULT_NARRATION);
+    public ModCraftingScreenButton(int x, int y, int width, int height, Button.OnPress onPress ) {
+        super(x, y, width, height, Component.empty(), onPress, Button.DEFAULT_NARRATION);
     }
 
     @Override
