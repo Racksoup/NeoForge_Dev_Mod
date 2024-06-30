@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ModCraftingScreen extends CraftingScreen {
     private ModCraftingScreenButton modButton;
-    private ImageButton imageButton;
+    private ImageButton recipeBookButton;
     private boolean bookOpen = false;
     private boolean wasBookOpen = false;
     private ModTalents modTalents;
@@ -25,17 +25,16 @@ public class ModCraftingScreen extends CraftingScreen {
     @Override
     protected void init() {
         super.init();
-
-        this.modTalents = new ModTalents(this, this.leftPos, this.topPos);
+        this.modTalents = new ModTalents(this.leftPos, this.topPos);
 
         for (var widget : this.renderables) {
             if (widget instanceof ImageButton) {
-                imageButton = (ImageButton) widget;
+                recipeBookButton = (ImageButton) widget;
                 break;
             }
         }
-        this.renderables.remove(imageButton);
-        this.children().remove(imageButton);
+        this.renderables.remove(recipeBookButton);
+        this.children().remove(recipeBookButton);
         toggleBook();
 
         modButton = new ModCraftingScreenButton(this.leftPos + 5, this.topPos + 34, 20, 18,
@@ -60,6 +59,8 @@ public class ModCraftingScreen extends CraftingScreen {
             wasBookOpen = bookOpen;
             updatePosition();
         }
+
+        this.modTalents.render(pGuiGraphics, pMouseX, pMouseY);
     }
 
     private void updatePosition() {
@@ -69,10 +70,7 @@ public class ModCraftingScreen extends CraftingScreen {
         this.modButton.setX(x + 5);
         this.modButton.setY(y + 34);
 
-        modTalents.warButton.setPosition(x - modTalents.texture.getWidth() / 2 - 10, y -20);
-        modTalents.shamButton.setPosition((int) (x - modTalents.texture.getWidth() / 2.0f * (2.0f/3.0f) - 10), y -1);
-        modTalents.mageButton.setPosition((int) (x - modTalents.texture.getWidth() / 2.0f * (1.0f/3.0f) - 10), y -1);
-        modTalents.texture.setPosition(x - modTalents.texture.getWidth() / 2 - 22, y -1);
+        modTalents.updatePos(x, y);
     }
 
     private void addModTalentsWidgets(ModTalents modTalents) {
@@ -87,5 +85,6 @@ public class ModCraftingScreen extends CraftingScreen {
         for (AbstractWidget widget : widgets) {
             widget.visible = bookOpen;
         }
+//        modTalents.tabSelect();
     }
 }
