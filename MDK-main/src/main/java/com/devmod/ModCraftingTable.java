@@ -8,12 +8,18 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.CraftingMenu;
+import net.minecraft.world.inventory.MenuConstructor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Supplier;
 
 
 public class ModCraftingTable extends Block {
@@ -28,26 +34,32 @@ public class ModCraftingTable extends Block {
         if (pLevel.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
-            MenuProvider menuProvider = pState.getMenuProvider(pLevel, pPos);
-            if (menuProvider != null) {
-                pPlayer.openMenu(menuProvider);
-                pPlayer.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+            pPlayer.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
 
-                ModCraftingMenu modCraftingMenu = new ModCraftingMenu(0, pPlayer.getInventory(), ContainerLevelAccess.create(pLevel, pPos));
-                Minecraft minecraft = Minecraft.getInstance();
-                minecraft.execute(() -> minecraft.setScreen(new ModCraftingScreen(modCraftingMenu, pPlayer.getInventory())));
-            }
+            Minecraft minecraft = Minecraft.getInstance();
+            minecraft.execute(() -> {
+                CraftingMenu modCraftingMenu = new CraftingMenu(
+                        pPlayer.containerMenu.containerId,
+                        pPlayer.getInventory(),
+                        ContainerLevelAccess.create(pLevel, pPos)
+                );
+                minecraft.setScreen(new ModCraftingScreen(modCraftingMenu, pPlayer.getInventory()));
+            });
 
             return InteractionResult.CONSUME;
         }
     }
 
-    @Override
-    public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
-        return new SimpleMenuProvider(
-                (p_52229_, p_52230_, p_52231_) -> {
-                    return new ModCraftingMenu(p_52229_, p_52230_, ContainerLevelAccess.create(pLevel, pPos));
-                }, CONTAINER_TITLE
-        );
-    }
+//    @Nullable
+//    @Override
+//    protected MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
+//        return super.getMenuProvider(pState, pLevel, pPos);
+//    }
+//    @Override
+//    public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
+//        return new SimpleMenuProvider(
+//                (pContainerId, pPlayerInventory, pPlayer) -> new CraftingMenu(pContainerId, pPlayerInventory),
+//                CONTAINER_TITLE
+//        );
+//    }
 }

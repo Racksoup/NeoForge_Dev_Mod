@@ -35,7 +35,6 @@ public class ModCraftingScreen extends CraftingScreen {
         }
         this.renderables.remove(recipeBookButton);
         this.children().remove(recipeBookButton);
-        toggleBook();
 
         modButton = new ModCraftingScreenButton(this.leftPos + 5, this.topPos + 34, 20, 18,
                 button -> {
@@ -49,6 +48,8 @@ public class ModCraftingScreen extends CraftingScreen {
                 });
         this.addRenderableWidget(modButton);
         addModTalentsWidgets(modTalents);
+
+        toggleBook();
     }
 
     @Override
@@ -85,6 +86,8 @@ public class ModCraftingScreen extends CraftingScreen {
         for (AbstractWidget widget : widgets) {
             widget.visible = bookOpen;
         }
-//        modTalents.tabSelect();
+        if (bookOpen) {
+            modTalents.tabSelect();
+        }
     }
 }

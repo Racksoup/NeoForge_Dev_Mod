@@ -27,8 +27,6 @@ public class ModTalents {
         this.shamTalents = new ShamTalents();
         this.mageTalents = new MageTalents();
 
-        Minecraft.getInstance().getTextureManager().bindForSetup(CONTAINER_BACKGROUND);
-
         texture = ImageWidget.texture(256, 256, CONTAINER_BACKGROUND, 256, 256);
 
         warButton = Button.builder(Component.literal("Warrior"), button -> {
@@ -96,14 +94,16 @@ public class ModTalents {
         shamTalents.hide();
         mageTalents.hide();
 
-        if (DevMod.roleData.currentClass.equals("warrior")) {
-            warTalents.show();
-        }
-        if (DevMod.roleData.currentClass.equals("shaman")) {
-            shamTalents.show();
-        }
-        if (DevMod.roleData.currentClass.equals("mage")) {
-            mageTalents.show();
+        if (DevMod.roleData.currentClass != null) {
+            if (DevMod.roleData.currentClass.equals("warrior")) {
+                warTalents.show();
+            }
+            if (DevMod.roleData.currentClass.equals("shaman")) {
+                shamTalents.show();
+            }
+            if (DevMod.roleData.currentClass.equals("mage")) {
+                mageTalents.show();
+            }
         }
     }
 
