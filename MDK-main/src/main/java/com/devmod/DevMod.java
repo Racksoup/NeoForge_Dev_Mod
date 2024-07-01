@@ -7,6 +7,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -40,14 +41,20 @@ public class DevMod
     public DevMod(IEventBus modEventBus, ModContainer modContainer)
     {
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::registerScreens);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
+        ModMenus.MENUS.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
 
         roleData = new ModRoleData();
+    }
+
+    private void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenus.MOD_CRAFTING_MENU.get(), ModCraftingScreen::new);
     }
 
     private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
