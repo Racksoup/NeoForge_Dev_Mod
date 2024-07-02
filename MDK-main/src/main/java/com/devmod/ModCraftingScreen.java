@@ -2,14 +2,12 @@ package com.devmod;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.CraftingScreen;
+import net.minecraft.client.gui.screens.recipebook.RecipeBookPage;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
@@ -17,10 +15,11 @@ import java.util.List;
 
 public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> {
     private ModCraftingScreenButton modButton;
-    private ImageButton recipeBookButton;
     private boolean bookOpen = false;
     private boolean wasBookOpen = false;
     private ModTalents modTalents;
+    private RecipeBookPage recipeBookPage;
+    private static final ResourceLocation BG_TEXTURE = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/crafting_table.png");
 
     public ModCraftingScreen(ModCraftingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -30,15 +29,6 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     protected void init() {
         super.init();
         this.modTalents = new ModTalents(this.leftPos, this.topPos);
-
-//        for (var widget : this.renderables) {
-//            if (widget instanceof ImageButton) {
-//                recipeBookButton = (ImageButton) widget;
-//                break;
-//            }
-//        }
-//        this.renderables.remove(recipeBookButton);
-//        this.children().remove(recipeBookButton);
 
         modButton = new ModCraftingScreenButton(this.leftPos + 5, this.topPos + 34, 20, 18,
                 button -> {
@@ -70,7 +60,7 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
 
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
-
+        pGuiGraphics.blit(BG_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     @Override
@@ -80,10 +70,6 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
 
     @Override
     protected void slotClicked(Slot pSlot, int pSlotId, int pMouseButton, ClickType pType) {
-        DevMod.LOGGER.info("Slot clicked: " + pSlot + " " + pSlotId + " " + pType);
-        if (pSlot != null && pSlot.hasItem()) {
-            DevMod.LOGGER.info("Item in slot: " + pSlot.getItem());
-        }
         super.slotClicked(pSlot, pSlotId, pMouseButton, pType);
     }
 
