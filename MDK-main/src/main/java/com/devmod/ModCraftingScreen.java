@@ -24,14 +24,12 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     private ImageButton recipeButton;
     private boolean bookOpen = false;
     private boolean wasBookOpen = false;
-    private Inventory playerInventory;
     private ModTalents modTalents;
     private RecipeBookComponent recipeBookComponent;
     private static final ResourceLocation BG_TEXTURE = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/crafting_table.png");
 
     public ModCraftingScreen(ModCraftingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
-        this.playerInventory = pPlayerInventory;
         this.recipeBookComponent = new RecipeBookComponent();
     }
 
@@ -40,7 +38,6 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
         super.init();
         this.modTalents = new ModTalents(this.leftPos, this.topPos);
 
-        // crafting screen given is 2x2 not 3x3. this.minecraft.player.getRecipeBook() not good. needs other Minecraft so that it gets the right player.getRecipeBook();
         this.recipeBookComponent.init(this.width, this.height, getMinecraft(), false, this.getMenu());
         recipeButton = new ImageButton(this.leftPos + 5, this.height / 2 - 59, 20, 18, RecipeBookComponent.RECIPE_BUTTON_SPRITES, p_313433_ -> {
             this.recipeBookComponent.toggleVisibility();
@@ -75,6 +72,11 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        if (recipeBookComponent.isVisible()) {
+            leftPos = 177 + (this.width - this.imageWidth - 200) / 2;
+            bookOpen = true;
+        }
+
         if (bookOpen != wasBookOpen) {
             toggleBook();
             wasBookOpen = bookOpen;
