@@ -1,13 +1,19 @@
 package com.devmod;
 
+import com.mojang.authlib.minecraft.client.MinecraftClient;
+import net.minecraft.client.ClientRecipeBook;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.recipebook.RecipeBookPage;
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
@@ -15,14 +21,18 @@ import java.util.List;
 
 public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> {
     private ModCraftingScreenButton modButton;
+    private ImageButton recipeButton;
     private boolean bookOpen = false;
     private boolean wasBookOpen = false;
+    private Inventory playerInventory;
     private ModTalents modTalents;
-    private RecipeBookPage recipeBookPage;
+    private RecipeBookComponent recipeBookComponent;
     private static final ResourceLocation BG_TEXTURE = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/crafting_table.png");
 
     public ModCraftingScreen(ModCraftingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        this.playerInventory = pPlayerInventory;
+        this.recipeBookComponent = new RecipeBookComponent();
     }
 
     @Override
@@ -30,7 +40,21 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
         super.init();
         this.modTalents = new ModTalents(this.leftPos, this.topPos);
 
-        modButton = new ModCraftingScreenButton(this.leftPos + 5, this.topPos + 34, 20, 18,
+        // crafting screen given is 2x2 not 3x3. this.minecraft.player.getRecipeBook() not good. needs other Minecraft so that it gets the right player.getRecipeBook();
+        this.recipeBookComponent.init(this.width, this.height, getMinecraft(), false, this.getMenu());
+        recipeButton = new ImageButton(this.leftPos + 5, this.height / 2 - 59, 20, 18, RecipeBookComponent.RECIPE_BUTTON_SPRITES, p_313433_ -> {
+            this.recipeBookComponent.toggleVisibility();
+            if (bookOpen) {
+                leftPos = (this.width - this.imageWidth) /2;
+                bookOpen = false;
+            } else {
+                leftPos = 177 + (this.width - this.imageWidth - 200) / 2;
+                bookOpen = true;
+            }
+        });
+        this.addWidget(this.recipeBookComponent);
+
+        modButton = new ModCraftingScreenButton(this.leftPos + 5, this.topPos + 44, 20, 18,
                 button -> {
                     if (bookOpen) {
                         leftPos = (this.width - this.imageWidth) /2;
@@ -40,7 +64,9 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
                         bookOpen = true;
                     }
                 });
+        this.addRenderableWidget(recipeButton);
         this.addRenderableWidget(modButton);
+        this.addWidget(recipeBookComponent);
         addModTalentsWidgets(modTalents);
 
         toggleBook();
@@ -56,11 +82,18 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
         }
 
         this.modTalents.render(pGuiGraphics, pMouseX, pMouseY);
+        recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
     }
 
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         pGuiGraphics.blit(BG_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+    }
+
+    @Override
+    public void containerTick() {
+        super.containerTick();
+        this.recipeBookComponent.tick();
     }
 
     @Override
@@ -78,7 +111,10 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
         int y = this.topPos;
 
         this.modButton.setX(x + 5);
-        this.modButton.setY(y + 34);
+        this.modButton.setY(y + 44);
+        this.recipeButton.setX(x + 5);
+        this.recipeButton.setY(this.height / 2 - 59);
+
 
         modTalents.updatePos(x, y);
     }

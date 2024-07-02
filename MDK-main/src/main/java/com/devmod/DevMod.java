@@ -1,14 +1,17 @@
 package com.devmod;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.stats.RecipeBook;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import org.slf4j.Logger;
@@ -49,8 +52,16 @@ public class DevMod
         ModMenus.MENUS.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
+        NeoForge.EVENT_BUS.addListener(DevMod::onContainerOpen);
 
         roleData = new ModRoleData();
+    }
+    public static void onContainerOpen(PlayerContainerEvent.Open event) {
+        // React to container (crafting interface) being opened
+        if (event.getContainer() instanceof CraftingContainer) {
+            // Crafting container opened, check and react
+            System.out.println("Player opened a crafting container");
+        }
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {

@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -12,11 +13,13 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class ModCraftingMenu extends AbstractContainerMenu {
+public class ModCraftingMenu extends RecipeBookMenu<CraftingInput, CraftingRecipe> {
     public static final int RESULT_SLOT = 0;
     private static final int CRAFT_SLOT_START = 1;
     private static final int CRAFT_SLOT_END = 10;
@@ -150,14 +153,76 @@ public class ModCraftingMenu extends AbstractContainerMenu {
         }
     }
 
-    @Override
-    public void removed(Player pPlayer) {
-        super.removed(pPlayer);
-        this.access.execute((p_39371_, p_39372_) -> this.clearContainer(pPlayer, this.craftSlots));
+    public java.util.@NotNull List<net.minecraft.client.RecipeBookCategories> getRecipeBookCategories() {
+        return net.minecraft.client.RecipeBookCategories.getCategories(this.getRecipeBookType());
     }
 
     @Override
     public boolean canTakeItemForPickAll(ItemStack pStack, Slot pSlot) {
         return pSlot.container != this.resultSlots && super.canTakeItemForPickAll(pStack, pSlot);
+    }
+
+    @Override
+    public int getResultSlotIndex() {
+        return 0;
+    }
+
+    @Override
+    public int getGridWidth() {
+        return this.craftSlots.getWidth();
+    }
+
+    @Override
+    public int getGridHeight() {
+        return this.craftSlots.getHeight();
+    }
+
+    @Override
+    public int getSize() {
+        return 10;
+    }
+
+    @Override
+    public RecipeBookType getRecipeBookType() {
+        return RecipeBookType.CRAFTING;
+    }
+
+    @Override
+    public boolean shouldMoveToInventory(int pSlotIndex) {
+        return pSlotIndex != this.getResultSlotIndex();
+    }
+
+
+    @Override
+    public void beginPlacingRecipe() {
+        this.placingRecipe = true;
+    }
+
+    @Override
+    public void finishPlacingRecipe(RecipeHolder<CraftingRecipe> p_345915_) {
+        this.placingRecipe = false;
+        this.access.execute((p_344361_, p_344362_) -> slotChangedCraftingGrid(this, p_344361_, this.player, this.craftSlots, this.resultSlots, p_345915_));
+    }
+
+    @Override
+    public void fillCraftSlotsStackedContents(StackedContents pItemHelper) {
+        this.craftSlots.fillStackedContents(pItemHelper);
+    }
+
+    @Override
+    public void clearCraftingContent() {
+        this.craftSlots.clearContent();
+        this.resultSlots.clearContent();
+    }
+
+    @Override
+    public boolean recipeMatches(RecipeHolder<CraftingRecipe> pRecipe) {
+        return pRecipe.value().matches(this.craftSlots.asCraftInput(), this.player.level());
+    }
+
+    @Override
+    public void removed(Player pPlayer) {
+        super.removed(pPlayer);
+        this.access.execute((p_39371_, p_39372_) -> this.clearContainer(pPlayer, this.craftSlots));
     }
 }
