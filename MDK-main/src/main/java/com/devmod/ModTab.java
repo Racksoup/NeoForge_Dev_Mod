@@ -20,6 +20,9 @@ public class ModTab {
                 output.accept(ModItems.STABLE_WATER_ITEM.get());
                 output.accept(ModItems.URANIUM_ITEM.get());
                 output.accept(ModItems.TURTLE_SHELL_ITEM.get());
+                output.accept(ModItems.NEO_BATTLE_AXE.get());
+                output.accept(ModItems.URSA_HEART.get());
+                output.accept(ModItems.TEMPERED_STAFF.get());
             })
             .build()
     );

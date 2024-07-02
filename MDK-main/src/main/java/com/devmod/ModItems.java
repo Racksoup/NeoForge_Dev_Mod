@@ -1,7 +1,6 @@
 package com.devmod;
 
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -32,4 +31,36 @@ public class ModItems {
             Item::new,
             new Item.Properties()
     );
+    public static final Supplier<SwordItem> NEO_BATTLE_AXE = ITEMS.register("neo_battle_axe", () -> new SwordItem(
+            ModTier.COPPER_TIER,
+            new Item.Properties().attributes(
+                    SwordItem.createAttributes(
+                            ModTier.COPPER_TIER,
+                            100,
+                            -2.4f
+                            )
+            )
+    ));
+    public static final Supplier<SwordItem> URSA_HEART = ITEMS.register("ursa_heart", () -> new SwordItem(
+            ModTier.COPPER_TIER,
+            new Item.Properties().attributes(
+                    SwordItem.createAttributes(
+                            ModTier.COPPER_TIER,
+                            100,
+                            -2.4f
+                    )
+            )
+    ));
+    public static final Supplier<Item> TEMPERED_STAFF = ITEMS.register(
+            "tempered_staff",
+            () -> new ModProjectileWeapon(
+                new Item.Properties()
+            )
+
+    );
+//    public static final Supplier<Item> TEMPERED_STAFF = ITEMS.registerItem(
+//            "tempered_staff",
+//            Item::new,
+//            new Item.Properties()
+//    );
 }

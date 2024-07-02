@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "dev_mod:item/neo_battle_axe"
+  }
+}
