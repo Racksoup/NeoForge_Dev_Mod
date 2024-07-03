@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "t": {
+      "item": "dev_mod:turtle_shell"
+    },
+    "b": {
+      "item": "minecraft:beef"
+    },
+    "c": {
+      "item": "minecraft:chicken"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "ttt",
+    "ccc"
+  ],
+  "result": {
+    "id": "dev_mod:ursa_heart",
+    "count": 1
+  }
+}

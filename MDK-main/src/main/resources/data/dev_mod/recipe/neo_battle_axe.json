@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "u": {
+      "item": "dev_mod:uranium"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "c": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    "ii ",
+    "uuu",
+    "  c"
+  ],
+  "result": {
+    "id": "dev_mod:neo_battle_axe",
+    "count": 1
+  }
+}

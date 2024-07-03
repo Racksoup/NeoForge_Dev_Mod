@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "s": {
+      "item": "dev_mod:stable_water"
+    },
+    "c": {
+      "item": "minecraft:cherry_planks"
+    },
+    "o": {
+      "item": "minecraft:dark_oak_planks"
+    }
+  },
+  "pattern": [
+    "ss",
+    "cc",
+    "oo"
+  ],
+  "result": {
+    "id": "dev_mod:tempered_staff",
+    "count": 1
+  }
+}
