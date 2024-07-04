@@ -1,25 +1,19 @@
 package com.devmod;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
-import net.minecraft.client.ClientRecipeBook;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
+import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
-
-
-public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> {
+public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> implements RecipeUpdateListener {
     private ModCraftingScreenButton modButton;
     private ImageButton recipeButton;
     private boolean bookOpen = false;
@@ -70,6 +64,12 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     }
 
     @Override
+    public void containerTick() {
+        super.containerTick();
+        this.recipeBookComponent.tick();
+    }
+
+    @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         if (recipeBookComponent.isVisible()) {
@@ -84,7 +84,10 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
         }
 
         this.modTalents.render(pGuiGraphics, pMouseX, pMouseY);
-        recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.recipeBookComponent.renderGhostRecipe(pGuiGraphics, this.leftPos, this.topPos, true, pPartialTick);
+        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+        this.recipeBookComponent.renderTooltip(pGuiGraphics, this.leftPos, this.topPos, pMouseX, pMouseY);
     }
 
     @Override
@@ -93,19 +96,44 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     }
 
     @Override
-    public void containerTick() {
-        super.containerTick();
-        this.recipeBookComponent.tick();
+    public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
+        return this.recipeBookComponent.keyPressed(pKeyCode, pScanCode, pModifiers) ? true : super.keyPressed(pKeyCode, pScanCode, pModifiers);
+    }
+
+    @Override
+    public boolean charTyped(char pCodePoint, int pModifiers) {
+        return this.recipeBookComponent.charTyped(pCodePoint, pModifiers) ? true : super.charTyped(pCodePoint, pModifiers);
+    }
+
+    @Override
+    protected boolean isHovering(int pX, int pY, int pWidth, int pHeight, double pMouseX, double pMouseY) {
+        return  super.isHovering(pX, pY, pWidth, pHeight, pMouseX, pMouseY);
     }
 
     @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-        return super.mouseClicked(pMouseX, pMouseY, pButton);
+        if (this.recipeBookComponent.mouseClicked(pMouseX, pMouseY, pButton)) {
+            this.setFocused(this.recipeBookComponent);
+            return true;
+        } else {
+            return super.mouseClicked(pMouseX, pMouseY, pButton);
+        }
     }
 
     @Override
     protected void slotClicked(Slot pSlot, int pSlotId, int pMouseButton, ClickType pType) {
         super.slotClicked(pSlot, pSlotId, pMouseButton, pType);
+        this.recipeBookComponent.slotClicked(pSlot);
+    }
+
+    @Override
+    public void recipesUpdated() {
+        this.recipeBookComponent.recipesUpdated();
+    }
+
+    @Override
+    public RecipeBookComponent getRecipeBookComponent() {
+        return this.recipeBookComponent;
     }
 
     private void updatePosition() {

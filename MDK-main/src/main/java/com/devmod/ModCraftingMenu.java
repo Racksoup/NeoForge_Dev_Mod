@@ -13,11 +13,11 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
+
 
 public class ModCraftingMenu extends RecipeBookMenu<CraftingInput, CraftingRecipe> {
     public static final int RESULT_SLOT = 0;
