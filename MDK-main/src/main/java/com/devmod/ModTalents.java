@@ -31,7 +31,6 @@ public class ModTalents {
         this.minecraft = mc;
         this.font = mc.font;
 
-
         warTalents = new WarTalents();
         shamTalents = new ShamTalents();
         mageTalents = new MageTalents();

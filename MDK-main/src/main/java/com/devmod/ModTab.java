@@ -23,6 +23,9 @@ public class ModTab {
                 output.accept(ModItems.NEO_BATTLE_AXE.get());
                 output.accept(ModItems.URSA_HEART.get());
                 output.accept(ModItems.TEMPERED_STAFF.get());
+                output.accept(ModItems.SPELL_CHARGE.get());
+                output.accept(ModItems.SPELL_LEASH.get());
+                output.accept(ModItems.SPELL_BLINK.get());
             })
             .build()
     );

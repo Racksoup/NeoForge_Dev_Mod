@@ -18,6 +18,8 @@ public class ModItems {
             "my_crafting_table",
             () -> new BlockItem(ModBlocks.MY_CRAFTING_TABLE_BLOCK.get(), new Item.Properties())
     );
+
+    // Crafting Reagents
     public static final Supplier<Item> STABLE_WATER_ITEM = ITEMS.registerItem(
            "stable_water",
             Item::new,
@@ -33,6 +35,8 @@ public class ModItems {
             Item::new,
             new Item.Properties()
     );
+
+    // Weapons
     public static final Supplier<Item> TEMPERED_STAFF = ITEMS.register(
             "tempered_staff",
             () -> new ModProjectileWeapon(
@@ -60,4 +64,21 @@ public class ModItems {
                     )
             )
     ));
+
+    // Spells
+    public static final Supplier<Item> SPELL_CHARGE = ITEMS.registerItem(
+            "spell_charge",
+            Item::new,
+            new Item.Properties()
+    );
+    public static final Supplier<Item> SPELL_LEASH = ITEMS.registerItem(
+            "spell_leash",
+            Item::new,
+            new Item.Properties()
+    );
+    public static final Supplier<Item> SPELL_BLINK = ITEMS.registerItem(
+            "spell_blink",
+            Item::new,
+            new Item.Properties()
+    );
 }
