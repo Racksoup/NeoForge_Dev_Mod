@@ -39,19 +39,19 @@ public class ModTalents {
 
         warButton = Button.builder(Component.literal("Warrior"), button -> {
             DevMod.LOGGER.info("Warrior Button clicked");
-            DevMod.roleData.currentClass = "warrior";
+            ModRoleData.currentClass = "warrior";
             tabSelect();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         shamButton = Button.builder(Component.literal("Shaman"), button -> {
             DevMod.LOGGER.info("Shaman Button clicked");
-            DevMod.roleData.currentClass = "shaman";
+            ModRoleData.currentClass = "shaman";
             tabSelect();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         mageButton = Button.builder(Component.literal("Mage"), button -> {
             DevMod.LOGGER.info("Mage Button clicked");
-            DevMod.roleData.currentClass = "mage";
+            ModRoleData.currentClass = "mage";
             tabSelect();
         }).bounds(leftPos, topPos, 40, 14).build();
     }
@@ -76,13 +76,13 @@ public class ModTalents {
             renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Mage talents"));
         }
         if (warTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Warrior Talent 1"));
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("+1 Axe Attack Range"));
         }
         if (shamTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Shaman Talent 1"));
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%5 Move Speed"));
         }
         if (mageTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Mage Talent 1"));
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%5 Chance To Stun On Hit"));
         }
     }
 
@@ -127,14 +127,14 @@ public class ModTalents {
         shamTalents.hide();
         mageTalents.hide();
 
-        if (DevMod.roleData.currentClass != null) {
-            if (DevMod.roleData.currentClass.equals("warrior")) {
+        if (ModRoleData.currentClass != null) {
+            if (ModRoleData.currentClass.equals("warrior")) {
                 warTalents.show();
             }
-            if (DevMod.roleData.currentClass.equals("shaman")) {
+            if (ModRoleData.currentClass.equals("shaman")) {
                 shamTalents.show();
             }
-            if (DevMod.roleData.currentClass.equals("mage")) {
+            if (ModRoleData.currentClass.equals("mage")) {
                 mageTalents.show();
             }
         }
@@ -146,7 +146,7 @@ public class ModTalents {
         public WarTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        DevMod.LOGGER.info("WarTalents Button clicked");
+                        ModRoleData.WarTree.t1 = true;
                     }, 38, 0);
         }
 

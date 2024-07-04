@@ -32,14 +32,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import java.util.function.Supplier;
-
 @Mod(DevMod.MODID)
 public class DevMod
 {
     public static final String MODID = "dev_mod";
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static ModRoleData roleData;
 
     public DevMod(IEventBus modEventBus, ModContainer modContainer)
     {
@@ -50,18 +47,6 @@ public class DevMod
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
         ModMenus.MENUS.register(modEventBus);
-        NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
-        NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
-        NeoForge.EVENT_BUS.addListener(DevMod::onContainerOpen);
-
-        roleData = new ModRoleData();
-    }
-    public static void onContainerOpen(PlayerContainerEvent.Open event) {
-        // React to container (crafting interface) being opened
-        if (event.getContainer() instanceof CraftingContainer) {
-            // Crafting container opened, check and react
-            System.out.println("Player opened a crafting container");
-        }
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {
@@ -106,6 +91,10 @@ public class DevMod
             LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+
+        NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
+        NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
+        NeoForge.EVENT_BUS.addListener(ModAttackRangeEventHandler::onPlayerAttack);
     }
 
     @SubscribeEvent
