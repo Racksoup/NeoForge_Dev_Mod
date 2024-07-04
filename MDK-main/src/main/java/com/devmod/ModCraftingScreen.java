@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
+
 public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> implements RecipeUpdateListener {
     private ModCraftingScreenButton modButton;
     private ImageButton recipeButton;
@@ -24,40 +25,39 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
 
     public ModCraftingScreen(ModCraftingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
-        this.recipeBookComponent = new RecipeBookComponent();
+        recipeBookComponent = new RecipeBookComponent();
     }
 
     @Override
     protected void init() {
         super.init();
-        this.modTalents = new ModTalents(this.leftPos, this.topPos);
+        modTalents = new ModTalents(leftPos, topPos, getMinecraft());
 
-        this.recipeBookComponent.init(this.width, this.height, getMinecraft(), false, this.getMenu());
-        recipeButton = new ImageButton(this.leftPos + 5, this.height / 2 - 59, 20, 18, RecipeBookComponent.RECIPE_BUTTON_SPRITES, p_313433_ -> {
-            this.recipeBookComponent.toggleVisibility();
+        recipeBookComponent.init(width, height, getMinecraft(), false, getMenu());
+        recipeButton = new ImageButton(leftPos + 5, height / 2 - 59, 20, 18, RecipeBookComponent.RECIPE_BUTTON_SPRITES, p_313433_ -> {
+            recipeBookComponent.toggleVisibility();
             if (bookOpen) {
-                leftPos = (this.width - this.imageWidth) /2;
+                leftPos = (width - imageWidth) /2;
                 bookOpen = false;
             } else {
-                leftPos = 177 + (this.width - this.imageWidth - 200) / 2;
+                leftPos = 177 + (width - imageWidth - 200) / 2;
                 bookOpen = true;
             }
         });
-        this.addWidget(this.recipeBookComponent);
 
-        modButton = new ModCraftingScreenButton(this.leftPos + 5, this.topPos + 44, 20, 18,
+        modButton = new ModCraftingScreenButton(leftPos + 5, topPos + 44, 20, 18,
                 button -> {
                     if (bookOpen) {
-                        leftPos = (this.width - this.imageWidth) /2;
+                        leftPos = (width - imageWidth) /2;
                         bookOpen = false;
                     } else {
-                        leftPos = 177 + (this.width - this.imageWidth - 200) / 2;
+                        leftPos = 177 + (width - imageWidth - 200) / 2;
                         bookOpen = true;
                     }
                 });
-        this.addRenderableWidget(recipeButton);
-        this.addRenderableWidget(modButton);
-        this.addWidget(recipeBookComponent);
+        addRenderableWidget(recipeButton);
+        addRenderableWidget(modButton);
+        addWidget(recipeBookComponent);
         addModTalentsWidgets(modTalents);
 
         toggleBook();
@@ -73,7 +73,7 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         if (recipeBookComponent.isVisible()) {
-            leftPos = 177 + (this.width - this.imageWidth - 200) / 2;
+            leftPos = 177 + (width - imageWidth - 200) / 2;
             bookOpen = true;
         }
 
@@ -83,26 +83,26 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
             updatePosition();
         }
 
-        this.modTalents.render(pGuiGraphics, pMouseX, pMouseY);
-        this.recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
-        this.recipeBookComponent.renderGhostRecipe(pGuiGraphics, this.leftPos, this.topPos, true, pPartialTick);
-        this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
-        this.recipeBookComponent.renderTooltip(pGuiGraphics, this.leftPos, this.topPos, pMouseX, pMouseY);
+        modTalents.render(pGuiGraphics, pMouseX, pMouseY);
+        recipeBookComponent.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        recipeBookComponent.renderGhostRecipe(pGuiGraphics, leftPos, topPos, true, pPartialTick);
+        renderTooltip(pGuiGraphics, pMouseX, pMouseY);
+        recipeBookComponent.renderTooltip(pGuiGraphics, leftPos, topPos, pMouseX, pMouseY);
     }
 
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
-        pGuiGraphics.blit(BG_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        pGuiGraphics.blit(BG_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
     }
 
     @Override
     public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
-        return this.recipeBookComponent.keyPressed(pKeyCode, pScanCode, pModifiers) ? true : super.keyPressed(pKeyCode, pScanCode, pModifiers);
+        return recipeBookComponent.keyPressed(pKeyCode, pScanCode, pModifiers) ? true : super.keyPressed(pKeyCode, pScanCode, pModifiers);
     }
 
     @Override
     public boolean charTyped(char pCodePoint, int pModifiers) {
-        return this.recipeBookComponent.charTyped(pCodePoint, pModifiers) ? true : super.charTyped(pCodePoint, pModifiers);
+        return recipeBookComponent.charTyped(pCodePoint, pModifiers) ? true : super.charTyped(pCodePoint, pModifiers);
     }
 
     @Override
@@ -112,8 +112,8 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
 
     @Override
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-        if (this.recipeBookComponent.mouseClicked(pMouseX, pMouseY, pButton)) {
-            this.setFocused(this.recipeBookComponent);
+        if (recipeBookComponent.mouseClicked(pMouseX, pMouseY, pButton)) {
+            setFocused(recipeBookComponent);
             return true;
         } else {
             return super.mouseClicked(pMouseX, pMouseY, pButton);
@@ -123,27 +123,27 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     @Override
     protected void slotClicked(Slot pSlot, int pSlotId, int pMouseButton, ClickType pType) {
         super.slotClicked(pSlot, pSlotId, pMouseButton, pType);
-        this.recipeBookComponent.slotClicked(pSlot);
+        recipeBookComponent.slotClicked(pSlot);
     }
 
     @Override
     public void recipesUpdated() {
-        this.recipeBookComponent.recipesUpdated();
+        recipeBookComponent.recipesUpdated();
     }
 
     @Override
     public RecipeBookComponent getRecipeBookComponent() {
-        return this.recipeBookComponent;
+        return recipeBookComponent;
     }
 
     private void updatePosition() {
-        int x = this.leftPos;
-        int y = this.topPos;
+        int x = leftPos;
+        int y = topPos;
 
-        this.modButton.setX(x + 5);
-        this.modButton.setY(y + 44);
-        this.recipeButton.setX(x + 5);
-        this.recipeButton.setY(this.height / 2 - 59);
+        modButton.setX(x + 5);
+        modButton.setY(y + 44);
+        recipeButton.setX(x + 5);
+        recipeButton.setY(height / 2 - 59);
 
 
         modTalents.updatePos(x, y);
@@ -152,7 +152,7 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
     private void addModTalentsWidgets(ModTalents modTalents) {
         List<AbstractWidget> widgets = modTalents.getAllWidgets();
         for (AbstractWidget widget : widgets) {
-            this.addRenderableWidget(widget);
+            addRenderableWidget(widget);
         }
     }
 

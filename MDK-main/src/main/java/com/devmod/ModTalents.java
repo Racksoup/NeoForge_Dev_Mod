@@ -1,6 +1,7 @@
 package com.devmod;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -9,7 +10,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ModTalents {
     private static final ResourceLocation CONTAINER_BACKGROUND = ResourceLocation.withDefaultNamespace("textures/gui/recipe_book.png");
@@ -17,15 +20,21 @@ public class ModTalents {
     public Button warButton;
     public Button shamButton;
     public Button mageButton;
+    public Font font;
+    private Minecraft minecraft;
 
     public WarTalents warTalents;
     public ShamTalents shamTalents;
     public MageTalents mageTalents;
 
-    public ModTalents(int leftPos, int topPos) {
-        this.warTalents = new WarTalents();
-        this.shamTalents = new ShamTalents();
-        this.mageTalents = new MageTalents();
+    public ModTalents(int leftPos, int topPos, Minecraft mc) {
+        this.minecraft = mc;
+        this.font = mc.font;
+
+
+        warTalents = new WarTalents();
+        shamTalents = new ShamTalents();
+        mageTalents = new MageTalents();
 
         texture = ImageWidget.texture(256, 256, CONTAINER_BACKGROUND, 256, 256);
 
@@ -56,6 +65,31 @@ public class ModTalents {
         warTalents.t1.render(pGuiGraphics, pMouseX, pMouseY, 0);
         shamTalents.t1.render(pGuiGraphics, pMouseX, pMouseY, 0);
         mageTalents.t1.render(pGuiGraphics, pMouseX, pMouseY, 0);
+
+        // Render tooltips
+        if (warButton.isHovered()) {
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Warrior talents"));
+        }
+        if (shamButton.isHovered()) {
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Shaman talents"));
+        }
+        if (mageButton.isHovered()) {
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Mage talents"));
+        }
+        if (warTalents.t1.isHovered()) {
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Warrior Talent 1"));
+        }
+        if (shamTalents.t1.isHovered()) {
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Shaman Talent 1"));
+        }
+        if (mageTalents.t1.isHovered()) {
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Mage Talent 1"));
+        }
+    }
+
+    private void renderTooltip(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, List<String> tooltips) {
+        List<Component> tooltipComponents = tooltips.stream().map(Component::literal).collect(Collectors.toList());
+        pGuiGraphics.renderComponentTooltip(font, tooltipComponents, pMouseX, pMouseY);
     }
 
     public List<AbstractWidget> getAllWidgets() {

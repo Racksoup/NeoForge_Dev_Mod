@@ -45,8 +45,8 @@ public class ModItems {
             new Item.Properties().attributes(
                     SwordItem.createAttributes(
                             ModTier.COPPER_TIER,
-                            100,
-                            -2.4f
+                            22,
+                            -3.2f
                             )
             )
     ));
@@ -55,8 +55,8 @@ public class ModItems {
             new Item.Properties().attributes(
                     SwordItem.createAttributes(
                             tier,
-                            100,
-                            -2.4f
+                            5,
+                            0.0f
                     )
             )
     ));

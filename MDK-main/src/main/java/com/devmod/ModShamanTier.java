@@ -15,10 +15,10 @@ public class ModShamanTier implements Tier {
     private final Ingredient repairIngredient;
 
     public ModShamanTier() {
-        this.uses = 400;
+        this.uses = 1000;
         this.speed = 1.0f;
-        this.attackDamageBonus = 50;
-        this.enchantmentValue = 1;
+        this.attackDamageBonus = 0;
+        this.enchantmentValue = 100;
         this.repairIngredient = Ingredient.of(ItemTags.create(ResourceLocation.fromNamespaceAndPath(DevMod.MODID, "turtle_shell")));
     }
 
