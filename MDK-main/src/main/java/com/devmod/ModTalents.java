@@ -39,19 +39,19 @@ public class ModTalents {
 
         warButton = Button.builder(Component.literal("Warrior"), button -> {
             DevMod.LOGGER.info("Warrior Button clicked");
-            ModRoleData.currentClass = "warrior";
+            ModRoleData.setCurrentClass("warrior");
             tabSelect();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         shamButton = Button.builder(Component.literal("Shaman"), button -> {
             DevMod.LOGGER.info("Shaman Button clicked");
-            ModRoleData.currentClass = "shaman";
+            ModRoleData.setCurrentClass("shaman");
             tabSelect();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         mageButton = Button.builder(Component.literal("Mage"), button -> {
             DevMod.LOGGER.info("Mage Button clicked");
-            ModRoleData.currentClass = "mage";
+            ModRoleData.setCurrentClass("mage");
             tabSelect();
         }).bounds(leftPos, topPos, 40, 14).build();
     }
@@ -127,14 +127,14 @@ public class ModTalents {
         shamTalents.hide();
         mageTalents.hide();
 
-        if (ModRoleData.currentClass != null) {
-            if (ModRoleData.currentClass.equals("warrior")) {
+        if (ModRoleData.getCurrentClass() != null) {
+            if (ModRoleData.getCurrentClass().equals("warrior")) {
                 warTalents.show();
             }
-            if (ModRoleData.currentClass.equals("shaman")) {
+            if (ModRoleData.getCurrentClass().equals("shaman")) {
                 shamTalents.show();
             }
-            if (ModRoleData.currentClass.equals("mage")) {
+            if (ModRoleData.getCurrentClass().equals("mage")) {
                 mageTalents.show();
             }
         }
@@ -146,7 +146,7 @@ public class ModTalents {
         public WarTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        ModRoleData.WarTree.t1 = true;
+                        ModRoleData.WarTree.setT1(!ModRoleData.WarTree.getT1());
                     }, 38, 0);
         }
 

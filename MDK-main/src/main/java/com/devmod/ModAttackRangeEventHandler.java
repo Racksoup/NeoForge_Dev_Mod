@@ -12,8 +12,8 @@ public class ModAttackRangeEventHandler {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && ModRoleData.currentClass.equals("warrior") && ModRoleData.WarTree.t1) {
-            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(4.0D);
+        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && ModRoleData.getCurrentClass().equals("warrior") && ModRoleData.WarTree.getT1()) {
+            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(40.0D);
         } else {
             player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(3.0D);
         }
