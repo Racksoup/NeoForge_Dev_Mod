@@ -1,7 +1,9 @@
-package com.devmod;
+package com.devmod.items;
 
+import com.devmod.ui.ModCraftingMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
@@ -9,16 +11,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CraftingTableBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.stats.Stats;
-
 
 
 public class ModCraftingTable extends CraftingTableBlock {
 
-    public ModCraftingTable(BlockBehaviour.Properties pProperties) {
+    public ModCraftingTable(Properties pProperties) {
         super(pProperties);
     }
 

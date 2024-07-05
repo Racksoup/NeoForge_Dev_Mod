@@ -1,4 +1,4 @@
-package com.devmod;
+package com.devmod.data;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;

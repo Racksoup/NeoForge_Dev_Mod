@@ -1,5 +1,8 @@
-package com.devmod;
+package com.devmod.registers;
 
+import com.devmod.DevMod;
+import com.devmod.items.ModCraftingTable;
+import com.devmod.items.MyBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraft.world.level.block.SoundType;

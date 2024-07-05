@@ -1,4 +1,4 @@
-package com.devmod;
+package com.devmod.items;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -9,7 +9,10 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -18,7 +21,7 @@ import java.util.function.Predicate;
 
 public class ModProjectileWeapon extends ProjectileWeaponItem {
 
-    public ModProjectileWeapon(Item.Properties properties) {
+    public ModProjectileWeapon(Properties properties) {
         super(properties);
     }
 

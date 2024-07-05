@@ -1,5 +1,6 @@
-package com.devmod;
+package com.devmod.ui;
 
+import com.devmod.DevMod;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
@@ -10,7 +11,7 @@ public class ModTalentButton extends Button {
     private int uOff;
     private int vOff;
 
-    public ModTalentButton(int width, int height, Button.OnPress onPress, int uOff, int vOff ) {
+    public ModTalentButton(int width, int height, OnPress onPress, int uOff, int vOff ) {
         super(0, 0, width, height, Component.empty(), onPress, Button.DEFAULT_NARRATION);
         this.uOff = uOff;
         this.vOff = vOff;

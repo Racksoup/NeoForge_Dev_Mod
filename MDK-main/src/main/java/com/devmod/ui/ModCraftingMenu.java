@@ -1,5 +1,7 @@
-package com.devmod;
+package com.devmod.ui;
 
+import com.devmod.registers.ModBlocks;
+import com.devmod.registers.ModMenus;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;

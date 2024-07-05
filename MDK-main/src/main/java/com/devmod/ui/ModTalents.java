@@ -1,18 +1,22 @@
-package com.devmod;
+package com.devmod.ui;
 
+import com.devmod.DevMod;
+import com.devmod.data.ModRoleData;
+import com.devmod.utils.ModPlayerSpeedModifier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageWidget;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public class ModTalents {
     private static final ResourceLocation CONTAINER_BACKGROUND = ResourceLocation.withDefaultNamespace("textures/gui/recipe_book.png");
@@ -79,7 +83,7 @@ public class ModTalents {
             renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("+1 Axe Attack Range"));
         }
         if (shamTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%5 Move Speed"));
+            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%10 Move Speed"));
         }
         if (mageTalents.t1.isHovered()) {
             renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%5 Chance To Stun On Hit"));
@@ -179,7 +183,12 @@ public class ModTalents {
         public ShamTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        DevMod.LOGGER.info("Sham Talents Button clicked");
+                        ModRoleData.ShamTree.setT1(!ModRoleData.WarTree.getT1());
+                        if (ModRoleData.WarTree.getT1()) {
+                            ModPlayerSpeedModifier.setPlayerSpeed(.1d * 2d);
+                        } else {
+                            ModPlayerSpeedModifier.setPlayerSpeed(.1d);
+                        }
                     }, 55, 0);
         }
 

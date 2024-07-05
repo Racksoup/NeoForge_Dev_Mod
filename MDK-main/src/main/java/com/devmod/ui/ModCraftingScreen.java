@@ -1,4 +1,4 @@
-package com.devmod;
+package com.devmod.ui;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;

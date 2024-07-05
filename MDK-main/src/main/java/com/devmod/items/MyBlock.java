@@ -1,10 +1,9 @@
-package com.devmod;
+package com.devmod.items;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class MyBlock extends Block {
-    public MyBlock(BlockBehaviour.Properties pProperties) {
+    public MyBlock(Properties pProperties) {
         super(pProperties);
         registerDefaultState(stateDefinition.any());
     }

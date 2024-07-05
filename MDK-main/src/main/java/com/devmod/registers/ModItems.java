@@ -1,6 +1,12 @@
-package com.devmod;
+package com.devmod.registers;
 
-import net.minecraft.world.item.*;
+import com.devmod.DevMod;
+import com.devmod.items.ModProjectileWeapon;
+import com.devmod.ModShamanTier;
+import com.devmod.ModTier;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;

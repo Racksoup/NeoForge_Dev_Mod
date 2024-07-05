@@ -1,5 +1,7 @@
-package com.devmod;
+package com.devmod.events;
 
+import com.devmod.registers.ModItems;
+import com.devmod.data.ModRoleData;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

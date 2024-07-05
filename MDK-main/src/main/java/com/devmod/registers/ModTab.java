@@ -1,5 +1,6 @@
-package com.devmod;
+package com.devmod.registers;
 
+import com.devmod.DevMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
