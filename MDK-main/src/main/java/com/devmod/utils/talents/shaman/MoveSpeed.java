@@ -1,4 +1,4 @@
-package com.devmod.utils;
+package com.devmod.utils.talents.shaman;
 
 import com.devmod.data.ModRoleData;
 import net.minecraft.client.Minecraft;
@@ -7,7 +7,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-public class ModShamTalentMoveSpeedModifier {
+public class MoveSpeed {
 
     private static boolean wasCrouching = false;
     private static boolean wasSprinting = false;
@@ -56,6 +56,6 @@ public class ModShamTalentMoveSpeedModifier {
     }
 
     public static void resetSpeed(Player player, Double speed) {
-        ModShamTalentMoveSpeedModifier.setPlayerSpeed(speed);
+        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(speed);
     }
 }

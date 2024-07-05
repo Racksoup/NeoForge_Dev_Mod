@@ -1,7 +1,7 @@
 package com.devmod.data;
 
-import com.devmod.utils.ModShamTalentMoveSpeedModifier;
-import com.devmod.utils.ModWarTalentAttackRangeModifier;
+import com.devmod.utils.talents.shaman.MoveSpeed;
+import com.devmod.utils.talents.warrior.AttackRange;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
@@ -87,11 +87,11 @@ public class ModRoleData {
         }
 
         public static void resetTalents() {
-            ModWarTalentAttackRangeModifier.setRangeTalent(attackRangeLevel1);
+            AttackRange.setRange(attackRangeLevel1);
         }
 
         public static void setTalents() {
-            ModWarTalentAttackRangeModifier.setRangeTalent(attackRangeDefault);
+            AttackRange.setRange(attackRangeDefault);
         }
     }
 
@@ -116,11 +116,11 @@ public class ModRoleData {
         }
 
         public static void resetTalents() {
-            ModShamTalentMoveSpeedModifier.setPlayerSpeed(moveSpeedDefault);
+            MoveSpeed.setPlayerSpeed(moveSpeedDefault);
         }
 
         public static void setTalents() {
-            ModShamTalentMoveSpeedModifier.setPlayerSpeed(moveSpeedLevel1);
+            MoveSpeed.setPlayerSpeed(moveSpeedLevel1);
         }
     }
 

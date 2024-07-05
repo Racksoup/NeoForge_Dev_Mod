@@ -2,8 +2,8 @@ package com.devmod.ui;
 
 import com.devmod.DevMod;
 import com.devmod.data.ModRoleData;
-import com.devmod.utils.ModShamTalentMoveSpeedModifier;
-import com.devmod.utils.ModWarTalentAttackRangeModifier;
+import com.devmod.utils.talents.shaman.MoveSpeed;
+import com.devmod.utils.talents.warrior.AttackRange;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -155,6 +155,11 @@ public class ModTalents {
             t1 = new ModTalentButton(16, 16,
                     button -> {
                         ModRoleData.WarTree.setT1(!ModRoleData.WarTree.getT1());
+                        if (ModRoleData.WarTree.getT1()) {
+                            AttackRange.setRange(ModRoleData.WarTree.attackRangeLevel1);
+                        } else {
+                            AttackRange.setRange(ModRoleData.WarTree.attackRangeDefault);
+                        }
                     }, 38, 0);
         }
 
@@ -191,9 +196,9 @@ public class ModTalents {
                     button -> {
                         ModRoleData.ShamTree.setT1(!ModRoleData.ShamTree.getT1());
                         if (ModRoleData.ShamTree.getT1()) {
-                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedLevel1);
+                            MoveSpeed.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedLevel1);
                         } else {
-                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedDefault);
+                            MoveSpeed.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedDefault);
                         }
                     }, 55, 0);
         }
