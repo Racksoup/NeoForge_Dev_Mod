@@ -2,7 +2,7 @@ package com.devmod.ui;
 
 import com.devmod.DevMod;
 import com.devmod.data.ModRoleData;
-import com.devmod.utils.ModPlayerSpeedModifier;
+import com.devmod.utils.ModShamTalentMoveSpeedModifier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -183,11 +183,11 @@ public class ModTalents {
         public ShamTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        ModRoleData.ShamTree.setT1(!ModRoleData.WarTree.getT1());
-                        if (ModRoleData.WarTree.getT1()) {
-                            ModPlayerSpeedModifier.setPlayerSpeed(.1d * 2d);
+                        ModRoleData.ShamTree.setT1(!ModRoleData.ShamTree.getT1());
+                        if (ModRoleData.ShamTree.getT1()) {
+                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(.1d * 2d);
                         } else {
-                            ModPlayerSpeedModifier.setPlayerSpeed(.1d);
+                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(.1d);
                         }
                     }, 55, 0);
         }

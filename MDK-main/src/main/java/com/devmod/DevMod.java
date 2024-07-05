@@ -2,6 +2,7 @@ package com.devmod;
 
 import com.devmod.data.ModRoleData;
 import com.devmod.events.ModAttackRangeEventHandler;
+import com.devmod.events.ModPlayerTickEventHandler;
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModItems;
 import com.devmod.registers.ModMenus;
@@ -104,6 +105,7 @@ public class DevMod
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
         NeoForge.EVENT_BUS.addListener(ModAttackRangeEventHandler::onPlayerAttack);
+        NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::onPlayerTick);
     }
 
     @SubscribeEvent
