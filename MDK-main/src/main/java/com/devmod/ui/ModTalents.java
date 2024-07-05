@@ -3,6 +3,7 @@ package com.devmod.ui;
 import com.devmod.DevMod;
 import com.devmod.data.ModRoleData;
 import com.devmod.utils.ModShamTalentMoveSpeedModifier;
+import com.devmod.utils.ModWarTalentAttackRangeModifier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -45,18 +46,21 @@ public class ModTalents {
             DevMod.LOGGER.info("Warrior Button clicked");
             ModRoleData.setCurrentClass("warrior");
             tabSelect();
+            ModRoleData.setTalents();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         shamButton = Button.builder(Component.literal("Shaman"), button -> {
             DevMod.LOGGER.info("Shaman Button clicked");
             ModRoleData.setCurrentClass("shaman");
             tabSelect();
+            ModRoleData.setTalents();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         mageButton = Button.builder(Component.literal("Mage"), button -> {
             DevMod.LOGGER.info("Mage Button clicked");
             ModRoleData.setCurrentClass("mage");
             tabSelect();
+            ModRoleData.setTalents();
         }).bounds(leftPos, topPos, 40, 14).build();
     }
 
@@ -175,6 +179,8 @@ public class ModTalents {
                 widget.visible = false;
             }
         }
+
+
     }
 
     public static class ShamTalents {
@@ -185,9 +191,9 @@ public class ModTalents {
                     button -> {
                         ModRoleData.ShamTree.setT1(!ModRoleData.ShamTree.getT1());
                         if (ModRoleData.ShamTree.getT1()) {
-                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(.1d * 2d);
+                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedLevel1);
                         } else {
-                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(.1d);
+                            ModShamTalentMoveSpeedModifier.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedDefault);
                         }
                     }, 55, 0);
         }

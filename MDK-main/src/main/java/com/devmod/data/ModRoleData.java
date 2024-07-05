@@ -1,5 +1,7 @@
 package com.devmod.data;
 
+import com.devmod.utils.ModShamTalentMoveSpeedModifier;
+import com.devmod.utils.ModWarTalentAttackRangeModifier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +19,7 @@ public class ModRoleData {
             ShamTree.SHAM_TREE_DATA.merge(MOD_DATA.getCompound("shamTree"));
             MageTree.MAGE_TREE_DATA.merge(MOD_DATA.getCompound("mageTree"));
         }
+//        setTalents();
     }
     public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         Player player = event.getEntity();
@@ -49,8 +52,26 @@ public class ModRoleData {
         }
     }
 
+
+    public static void setTalents() {
+        WarTree.resetTalents();
+        ShamTree.resetTalents();
+        MageTree.resetTalents();
+
+        if (ModRoleData.getCurrentClass().equals("warrior")) {
+            WarTree.setTalents();
+        } else if (ModRoleData.getCurrentClass().equals("shaman")) {
+            ShamTree.setTalents();
+        } else if (ModRoleData.getCurrentClass().equals("mage")) {
+            MageTree.setTalents();
+        }
+    }
+
     public static class WarTree {
         private static final CompoundTag WAR_TREE_DATA = new CompoundTag();
+
+        public static Double attackRangeLevel1 = 40.0D;
+        public static Double attackRangeDefault = 3.0D;
 
         public static Boolean getT1() {
             return WAR_TREE_DATA.getByte("t1") != (byte) 0;
@@ -64,10 +85,22 @@ public class ModRoleData {
                 playerData.put("devMod", MOD_DATA);
             }
         }
+
+        public static void resetTalents() {
+            ModWarTalentAttackRangeModifier.setRangeTalent(attackRangeLevel1);
+        }
+
+        public static void setTalents() {
+            ModWarTalentAttackRangeModifier.setRangeTalent(attackRangeDefault);
+        }
     }
 
     public static class ShamTree {
         private static final CompoundTag SHAM_TREE_DATA = new CompoundTag();
+
+        public static Double moveSpeedDefault = .1D;
+        public static Double moveSpeedLevel1 = .1D * 2.0D;
+        public static Double runSpeed = .1D;
 
         public static Boolean getT1() {
             return SHAM_TREE_DATA.getByte("t1") != (byte) 0;
@@ -80,6 +113,14 @@ public class ModRoleData {
                 CompoundTag playerData = player.getPersistentData();
                 playerData.put("devMod", MOD_DATA);
             }
+        }
+
+        public static void resetTalents() {
+            ModShamTalentMoveSpeedModifier.setPlayerSpeed(moveSpeedDefault);
+        }
+
+        public static void setTalents() {
+            ModShamTalentMoveSpeedModifier.setPlayerSpeed(moveSpeedLevel1);
         }
     }
 
@@ -97,6 +138,13 @@ public class ModRoleData {
                 CompoundTag playerData = player.getPersistentData();
                 playerData.put("devMod", MOD_DATA);
             }
+        }
+
+        public static void resetTalents() {
+        }
+
+        public static void setTalents() {
+
         }
     }
 }

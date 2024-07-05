@@ -1,6 +1,5 @@
 package com.devmod.utils;
 
-import com.devmod.DevMod;
 import com.devmod.data.ModRoleData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -31,7 +30,7 @@ public class ModShamTalentMoveSpeedModifier {
                 return movementSpeedAttribute.getBaseValue();
             }
         }
-        return 0.1; // Default player speed
+        return ModRoleData.ShamTree.moveSpeedDefault;
     }
 
     public static void resetSpeedOnCrouchSprint(PlayerTickEvent.Post event) {
@@ -39,30 +38,24 @@ public class ModShamTalentMoveSpeedModifier {
             Player player = event.getEntity();
 
             if (player.isCrouching() && !wasCrouching) {
-                DevMod.LOGGER.info("was crouching");
                 wasCrouching = true;
             } else if (!player.isCrouching() && wasCrouching) {
-                DevMod.LOGGER.info("was not crouching");
-                onPlayerStopCrouching(player);
+                resetSpeed(player, ModRoleData.ShamTree.moveSpeedLevel1);
                 wasCrouching = false;
             }
 
             if (player.isSprinting() && !wasSprinting) {
-                DevMod.LOGGER.info("was sprinting");
+
+                resetSpeed(player, ModRoleData.ShamTree.moveSpeedLevel1 + ModRoleData.ShamTree.runSpeed);
                 wasSprinting = true;
             } else if (!player.isSprinting() && wasSprinting) {
-                DevMod.LOGGER.info("was not sprinting");
-                onPlayerStopSprinting(player);
+                resetSpeed(player, ModRoleData.ShamTree.moveSpeedLevel1);
                 wasCrouching = false;
             }
         }
     }
 
-    public static void onPlayerStopCrouching(Player player) {
-        ModShamTalentMoveSpeedModifier.setPlayerSpeed(.1d * 2d);
-    }
-
-    public static void onPlayerStopSprinting(Player player) {
-        ModShamTalentMoveSpeedModifier.setPlayerSpeed(.1d * 2d);
+    public static void resetSpeed(Player player, Double speed) {
+        ModShamTalentMoveSpeedModifier.setPlayerSpeed(speed);
     }
 }
