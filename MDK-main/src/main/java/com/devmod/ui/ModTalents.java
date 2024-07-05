@@ -2,6 +2,7 @@ package com.devmod.ui;
 
 import com.devmod.DevMod;
 import com.devmod.data.ModRoleData;
+import com.devmod.utils.talents.mage.StunChance;
 import com.devmod.utils.talents.shaman.MoveSpeed;
 import com.devmod.utils.talents.warrior.AttackRange;
 import net.minecraft.client.Minecraft;
@@ -232,7 +233,7 @@ public class ModTalents {
         public MageTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        DevMod.LOGGER.info("Mage Talents Button clicked");
+                        ModRoleData.MageTree.setT1(!ModRoleData.MageTree.getT1());
                     }, 72, 0);
         }
 

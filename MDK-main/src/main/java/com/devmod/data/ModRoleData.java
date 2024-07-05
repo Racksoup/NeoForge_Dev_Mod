@@ -126,6 +126,8 @@ public class ModRoleData {
 
     public static class MageTree {
         private static final CompoundTag MAGE_TREE_DATA = new CompoundTag();
+        public static Double stunChanceLevel1 = 1.0D;
+        public static Double stunChanceDefault = 0D;
 
         public static Boolean getT1() {
             return MAGE_TREE_DATA.getByte("t1") != (byte) 0;
