@@ -1,10 +1,7 @@
 package com.devmod;
 
 import com.devmod.data.ModRoleData;
-import com.devmod.events.ModLivingHurtEventHandler;
-import com.devmod.events.ModPlayerAttackEventHandler;
-import com.devmod.events.ModPlayerInteractEventHandler;
-import com.devmod.events.ModPlayerTickEventHandler;
+import com.devmod.events.*;
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModItems;
 import com.devmod.registers.ModMenus;
@@ -108,7 +105,7 @@ public class DevMod
         NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::onPlayerAttack);
         NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::onLivingHurt);
-        NeoForge.EVENT_BUS.addListener(ModPlayerInteractEventHandler::onLeftClick);
+        NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::onKeyInput);
     }
 
     @SubscribeEvent

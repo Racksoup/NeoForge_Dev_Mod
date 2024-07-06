@@ -4,6 +4,8 @@ import com.devmod.DevMod;
 import com.devmod.items.ModProjectileWeapon;
 import com.devmod.ModShamanTier;
 import com.devmod.ModTier;
+import com.devmod.items.ModSpell;
+import com.devmod.items.ModSwordItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
@@ -43,14 +45,14 @@ public class ModItems {
     );
 
     // Weapons
-    public static final Supplier<Item> TEMPERED_STAFF = ITEMS.register(
+    public static final Supplier<ModProjectileWeapon> TEMPERED_STAFF = ITEMS.register(
             "tempered_staff",
             () -> new ModProjectileWeapon(
                     new Item.Properties()
             )
 
     );
-    public static final Supplier<SwordItem> NEO_BATTLE_AXE = ITEMS.register("neo_battle_axe", () -> new SwordItem(
+    public static final Supplier<ModSwordItem> NEO_BATTLE_AXE = ITEMS.register("neo_battle_axe", () -> new ModSwordItem(
             ModTier.COPPER_TIER,
             new Item.Properties().attributes(
                     SwordItem.createAttributes(
@@ -60,7 +62,7 @@ public class ModItems {
                             )
             )
     ));
-    public static final Supplier<SwordItem> URSA_HEART = ITEMS.register("ursa_heart", () -> new SwordItem(
+    public static final Supplier<ModSwordItem> URSA_HEART = ITEMS.register("ursa_heart", () -> new ModSwordItem(
             tier,
             new Item.Properties().attributes(
                     SwordItem.createAttributes(
@@ -72,19 +74,19 @@ public class ModItems {
     ));
 
     // Spells
-    public static final Supplier<Item> SPELL_CHARGE = ITEMS.registerItem(
+    public static final Supplier<ModSpell> SPELL_CHARGE = ITEMS.registerItem(
             "spell_charge",
-            Item::new,
-            new Item.Properties()
+            ModSpell::new,
+            new ModSpell.Properties()
     );
-    public static final Supplier<Item> SPELL_LEASH = ITEMS.registerItem(
+    public static final Supplier<ModSpell> SPELL_LEASH = ITEMS.registerItem(
             "spell_leash",
-            Item::new,
-            new Item.Properties()
+            ModSpell::new,
+            new ModSpell.Properties()
     );
-    public static final Supplier<Item> SPELL_BLINK = ITEMS.registerItem(
+    public static final Supplier<ModSpell> SPELL_BLINK = ITEMS.registerItem(
             "spell_blink",
-            Item::new,
-            new Item.Properties()
+            ModSpell::new,
+            new ModSpell.Properties()
     );
 }

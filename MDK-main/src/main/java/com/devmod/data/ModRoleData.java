@@ -72,8 +72,9 @@ public class ModRoleData {
 
         public static Double attackRangeLevel1 = 40.0D;
         public static Double attackRangeDefault = 3.0D;
-        public static Double chargeSpeed = 3.5D;
+        public static Double chargeSpeed = 1.05D;
         public static Double walkSpeed = 0.1D;
+        public static Integer chargeTime = 140;
 
         public static Boolean getT1() {
             return WAR_TREE_DATA.getByte("t1") != (byte) 0;

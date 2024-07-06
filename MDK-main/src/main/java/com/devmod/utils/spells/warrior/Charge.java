@@ -24,6 +24,6 @@ public class Charge {
                 DevMod.LOGGER.info("Charging " + player.getDisplayName().getString() + "...");
                 movementSpeedAttribute.setBaseValue(ModRoleData.WarTree.walkSpeed);
             }
-        }, 1000);
+        }, ModRoleData.WarTree.chargeTime);
     }
 }
