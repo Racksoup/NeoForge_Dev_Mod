@@ -5,6 +5,7 @@ import com.devmod.data.SpellData;
 import com.devmod.items.ModProjectileWeapon;
 import com.devmod.items.ModSpell;
 import com.devmod.items.ModSwordItem;
+import com.devmod.utils.spells.mage.Blink;
 import com.devmod.utils.spells.warrior.Charge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
@@ -56,7 +57,6 @@ public class KeyBindings {
     }
 
     public static void performSpell(ItemStack spellStack) {
-        SpellData.activateGCD();
         switch (spellStack.getItem().getName(spellStack).getString()) {
             case "item.dev_mod.spell_charge":
                 Charge.onCharge();
@@ -65,7 +65,7 @@ public class KeyBindings {
                 // handle spell_leash
                 break;
             case "item.dev_mod.spell_blink":
-                // handle spell_blink
+                Blink.onBlink();
                 break;
             // add cases for other spells
             default:

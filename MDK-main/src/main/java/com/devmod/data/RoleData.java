@@ -72,10 +72,10 @@ public class RoleData {
 
         public static Double attackRangeLevel1 = 40.0d;
         public static Double attackRangeDefault = 3.0d;
-        public static Double chargeSpeed = 1.05d;
+        public static Double chargeSpeed = .7d;
         public static Double walkSpeed = 0.1d;
-        public static Integer chargeTime = 140;
-        public static boolean chargeCD = true;
+        public static Integer chargeTime = 210;
+        public static boolean chargeCD = false;
         public static SpellData.BooleanSetter setChargeCD() {return val -> chargeCD = val;}
         public static Integer chargeCDLength = 2 *1000;
 
@@ -132,8 +132,14 @@ public class RoleData {
 
     public static class Mage {
         private static final CompoundTag MAGE_TREE_DATA = new CompoundTag();
-        public static Double stunChanceLevel1 = 1.0D;
-        public static Double stunChanceDefault = 0D;
+        public static double stunChanceLevel1 = 0.2D;
+        public static double stunChanceDefault = 0D;
+        public static boolean blinkCD = false;
+        public static int blinkCDLength = 5 *1000;
+        public static double blinkSpeed = 5d;
+        public static int blinkTime = (int) Math.floor(.1 *1000);
+        public static double walkSpeed = .1;
+        public static SpellData.BooleanSetter setBlinkCD() {return val -> blinkCD = val;}
 
         public static Boolean getT1() {
             return MAGE_TREE_DATA.getByte("t1") != (byte) 0;

@@ -1,4 +1,4 @@
-package com.devmod.utils.spells.warrior;
+package com.devmod.utils.spells.mage;
 
 import com.devmod.data.RoleData;
 import com.devmod.data.SpellData;
@@ -10,28 +10,28 @@ import net.minecraft.world.entity.player.Player;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Charge {
+public class Blink {
 
-    public static void onCharge() {
+    public static void onBlink() {
         Player player = Minecraft.getInstance().player;
 
-        if (!RoleData.War.chargeCD && RoleData.getCurrentClass().equals("warrior")) {
-            // set charge speed
+        if (!RoleData.Mage.blinkCD && RoleData.getCurrentClass().equals("mage")) {
+            // set blink speed
             AttributeInstance movementSpeedAttribute = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            movementSpeedAttribute.setBaseValue(RoleData.War.chargeSpeed);
+            movementSpeedAttribute.setBaseValue(RoleData.Mage.blinkSpeed);
 
             // reset to walk speed
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    movementSpeedAttribute.setBaseValue(RoleData.War.walkSpeed);
+                    movementSpeedAttribute.setBaseValue(RoleData.Mage.walkSpeed);
                 }
-            }, RoleData.War.chargeTime);
+            }, RoleData.Mage.blinkTime);
 
             // activate CD
             SpellData.activateGCD();
-            SpellData.activateCD(RoleData.War.setChargeCD(), RoleData.War.chargeCDLength);
+            SpellData.activateCD(RoleData.Mage.setBlinkCD(), RoleData.Mage.blinkCDLength);
         }
     }
 }

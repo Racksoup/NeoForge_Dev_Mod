@@ -32,12 +32,12 @@ public class SpellData {
     }
 
     public static void activateCD(BooleanSetter setter, Integer cdLength) {
-        setter.set(false);
+        setter.set(true);
         Timer cdTimer = new Timer();
         cdTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                setter.set(true);
+                setter.set(false);
             }
         }, cdLength);
     }
