@@ -1,6 +1,6 @@
 package com.devmod;
 
-import com.devmod.data.ModRoleData;
+import com.devmod.data.RoleData;
 import com.devmod.events.*;
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModItems;
@@ -97,9 +97,9 @@ public class DevMod
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
 
-        NeoForge.EVENT_BUS.addListener(ModRoleData::onPlayerLogin);
-        NeoForge.EVENT_BUS.addListener(ModRoleData::onPlayerClone);
-        NeoForge.EVENT_BUS.addListener(ModRoleData::onPlayerLogout);
+        NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogin);
+        NeoForge.EVENT_BUS.addListener(RoleData::onPlayerClone);
+        NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogout);
         NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
         NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
         NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::onPlayerAttack);

@@ -2,7 +2,7 @@ package com.devmod.utils.spells;
 
 
 import com.devmod.DevMod;
-import com.devmod.data.ModSpellData;
+import com.devmod.data.SpellData;
 import com.devmod.items.ModProjectileWeapon;
 import com.devmod.items.ModSpell;
 import com.devmod.items.ModSwordItem;
@@ -50,16 +50,15 @@ public class KeyBindings {
     }
 
     public static void performSpell(ItemStack spellStack) {
-        DevMod.LOGGER.info("spell time!: {}", spellStack.getItem().getName(spellStack).getString());
-        if (ModSpellData.spellUsable()) {
+        if (SpellData.spellUsable()) {
             switch (spellStack.getItem().getName(spellStack).getString()) {
                 case "item.dev_mod.spell_charge":
                     Charge.onCharge();
                     break;
-                case "spell_leash":
+                case "item.dev_mod.spell_leash":
                     // handle spell_leash
                     break;
-                case "spell_blink":
+                case "item.dev_mod.spell_blink":
                     // handle spell_blink
                     break;
                 // add cases for other spells

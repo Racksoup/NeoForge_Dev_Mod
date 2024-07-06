@@ -1,8 +1,7 @@
 package com.devmod.ui;
 
 import com.devmod.DevMod;
-import com.devmod.data.ModRoleData;
-import com.devmod.utils.talents.mage.StunChance;
+import com.devmod.data.RoleData;
 import com.devmod.utils.talents.shaman.MoveSpeed;
 import com.devmod.utils.talents.warrior.AttackRange;
 import net.minecraft.client.Minecraft;
@@ -45,23 +44,23 @@ public class ModTalents {
 
         warButton = Button.builder(Component.literal("Warrior"), button -> {
             DevMod.LOGGER.info("Warrior Button clicked");
-            ModRoleData.setCurrentClass("warrior");
+            RoleData.setCurrentClass("warrior");
             tabSelect();
-            ModRoleData.setTalents();
+            RoleData.setTalents();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         shamButton = Button.builder(Component.literal("Shaman"), button -> {
             DevMod.LOGGER.info("Shaman Button clicked");
-            ModRoleData.setCurrentClass("shaman");
+            RoleData.setCurrentClass("shaman");
             tabSelect();
-            ModRoleData.setTalents();
+            RoleData.setTalents();
         }).bounds(leftPos, topPos, 41, 14).build();
 
         mageButton = Button.builder(Component.literal("Mage"), button -> {
             DevMod.LOGGER.info("Mage Button clicked");
-            ModRoleData.setCurrentClass("mage");
+            RoleData.setCurrentClass("mage");
             tabSelect();
-            ModRoleData.setTalents();
+            RoleData.setTalents();
         }).bounds(leftPos, topPos, 40, 14).build();
     }
 
@@ -136,14 +135,14 @@ public class ModTalents {
         shamTalents.hide();
         mageTalents.hide();
 
-        if (ModRoleData.getCurrentClass() != null) {
-            if (ModRoleData.getCurrentClass().equals("warrior")) {
+        if (RoleData.getCurrentClass() != null) {
+            if (RoleData.getCurrentClass().equals("warrior")) {
                 warTalents.show();
             }
-            if (ModRoleData.getCurrentClass().equals("shaman")) {
+            if (RoleData.getCurrentClass().equals("shaman")) {
                 shamTalents.show();
             }
-            if (ModRoleData.getCurrentClass().equals("mage")) {
+            if (RoleData.getCurrentClass().equals("mage")) {
                 mageTalents.show();
             }
         }
@@ -155,11 +154,11 @@ public class ModTalents {
         public WarTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        ModRoleData.WarTree.setT1(!ModRoleData.WarTree.getT1());
-                        if (ModRoleData.WarTree.getT1()) {
-                            AttackRange.setRange(ModRoleData.WarTree.attackRangeLevel1);
+                        RoleData.WarTree.setT1(!RoleData.WarTree.getT1());
+                        if (RoleData.WarTree.getT1()) {
+                            AttackRange.setRange(RoleData.WarTree.attackRangeLevel1);
                         } else {
-                            AttackRange.setRange(ModRoleData.WarTree.attackRangeDefault);
+                            AttackRange.setRange(RoleData.WarTree.attackRangeDefault);
                         }
                     }, 38, 0);
         }
@@ -195,11 +194,11 @@ public class ModTalents {
         public ShamTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        ModRoleData.ShamTree.setT1(!ModRoleData.ShamTree.getT1());
-                        if (ModRoleData.ShamTree.getT1()) {
-                            MoveSpeed.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedLevel1);
+                        RoleData.ShamTree.setT1(!RoleData.ShamTree.getT1());
+                        if (RoleData.ShamTree.getT1()) {
+                            MoveSpeed.setPlayerSpeed(RoleData.ShamTree.moveSpeedLevel1);
                         } else {
-                            MoveSpeed.setPlayerSpeed(ModRoleData.ShamTree.moveSpeedDefault);
+                            MoveSpeed.setPlayerSpeed(RoleData.ShamTree.moveSpeedDefault);
                         }
                     }, 55, 0);
         }
@@ -233,7 +232,7 @@ public class ModTalents {
         public MageTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        ModRoleData.MageTree.setT1(!ModRoleData.MageTree.getT1());
+                        RoleData.MageTree.setT1(!RoleData.MageTree.getT1());
                     }, 72, 0);
         }
 

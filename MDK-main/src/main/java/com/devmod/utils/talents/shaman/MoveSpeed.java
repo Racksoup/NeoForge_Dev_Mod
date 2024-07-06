@@ -1,6 +1,6 @@
 package com.devmod.utils.talents.shaman;
 
-import com.devmod.data.ModRoleData;
+import com.devmod.data.RoleData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -30,26 +30,26 @@ public class MoveSpeed {
                 return movementSpeedAttribute.getBaseValue();
             }
         }
-        return ModRoleData.ShamTree.moveSpeedDefault;
+        return RoleData.ShamTree.moveSpeedDefault;
     }
 
     public static void resetSpeedOnCrouchSprint(PlayerTickEvent.Post event) {
-        if (ModRoleData.getCurrentClass().equals("shaman") && ModRoleData.ShamTree.getT1()) {
+        if (RoleData.getCurrentClass().equals("shaman") && RoleData.ShamTree.getT1()) {
             Player player = event.getEntity();
 
             if (player.isCrouching() && !wasCrouching) {
                 wasCrouching = true;
             } else if (!player.isCrouching() && wasCrouching) {
-                resetSpeed(player, ModRoleData.ShamTree.moveSpeedLevel1);
+                resetSpeed(player, RoleData.ShamTree.moveSpeedLevel1);
                 wasCrouching = false;
             }
 
             if (player.isSprinting() && !wasSprinting) {
 
-                resetSpeed(player, ModRoleData.ShamTree.moveSpeedLevel1 + ModRoleData.ShamTree.runSpeed);
+                resetSpeed(player, RoleData.ShamTree.moveSpeedLevel1 + RoleData.ShamTree.runSpeed);
                 wasSprinting = true;
             } else if (!player.isSprinting() && wasSprinting) {
-                resetSpeed(player, ModRoleData.ShamTree.moveSpeedLevel1);
+                resetSpeed(player, RoleData.ShamTree.moveSpeedLevel1);
                 wasCrouching = false;
             }
         }

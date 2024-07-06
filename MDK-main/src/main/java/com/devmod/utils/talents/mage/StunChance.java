@@ -1,7 +1,6 @@
 package com.devmod.utils.talents.mage;
 
-import com.devmod.DevMod;
-import com.devmod.data.ModRoleData;
+import com.devmod.data.RoleData;
 import com.devmod.registers.ModItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -21,7 +20,7 @@ public class StunChance {
         }
 
         if (heldItem != null) {
-            if (heldItem.getItem() == ModItems.TEMPERED_STAFF.get() && ModRoleData.getCurrentClass().equals("mage") && ModRoleData.MageTree.getT1() && Math.random() < ModRoleData.MageTree.stunChanceLevel1) {
+            if (heldItem.getItem() == ModItems.TEMPERED_STAFF.get() && RoleData.getCurrentClass().equals("mage") && RoleData.MageTree.getT1() && Math.random() < RoleData.MageTree.stunChanceLevel1) {
                 event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
             }
         }

@@ -1,6 +1,6 @@
 package com.devmod.utils.talents.warrior;
 
-import com.devmod.data.ModRoleData;
+import com.devmod.data.RoleData;
 import com.devmod.registers.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -14,10 +14,10 @@ public class AttackRange {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && ModRoleData.getCurrentClass().equals("warrior") && ModRoleData.WarTree.getT1()) {
-            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(ModRoleData.WarTree.attackRangeLevel1);
+        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && RoleData.getCurrentClass().equals("warrior") && RoleData.WarTree.getT1()) {
+            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.WarTree.attackRangeLevel1);
         } else {
-            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(ModRoleData.WarTree.attackRangeDefault);
+            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.WarTree.attackRangeDefault);
         }
     }
 

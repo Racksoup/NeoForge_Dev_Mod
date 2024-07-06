@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
-public class ModRoleData {
+public class RoleData {
     private static final CompoundTag MOD_DATA = new CompoundTag();
 
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
@@ -58,11 +58,11 @@ public class ModRoleData {
         ShamTree.resetTalents();
         MageTree.resetTalents();
 
-        if (ModRoleData.getCurrentClass().equals("warrior")) {
+        if (RoleData.getCurrentClass().equals("warrior")) {
             WarTree.setTalents();
-        } else if (ModRoleData.getCurrentClass().equals("shaman")) {
+        } else if (RoleData.getCurrentClass().equals("shaman")) {
             ShamTree.setTalents();
-        } else if (ModRoleData.getCurrentClass().equals("mage")) {
+        } else if (RoleData.getCurrentClass().equals("mage")) {
             MageTree.setTalents();
         }
     }
@@ -70,11 +70,14 @@ public class ModRoleData {
     public static class WarTree {
         private static final CompoundTag WAR_TREE_DATA = new CompoundTag();
 
-        public static Double attackRangeLevel1 = 40.0D;
-        public static Double attackRangeDefault = 3.0D;
-        public static Double chargeSpeed = 1.05D;
-        public static Double walkSpeed = 0.1D;
+        public static Double attackRangeLevel1 = 40.0d;
+        public static Double attackRangeDefault = 3.0d;
+        public static Double chargeSpeed = 1.05d;
+        public static Double walkSpeed = 0.1d;
         public static Integer chargeTime = 140;
+        public static boolean chargeCD = true;
+        public static SpellData.BooleanSetter setChargeCD() {return val -> chargeCD = val;}
+        public static Integer chargeCDLength = 2 *1000;
 
         public static Boolean getT1() {
             return WAR_TREE_DATA.getByte("t1") != (byte) 0;
