@@ -12,6 +12,6 @@ public class ModKeyBindEventHandler {
         boolean isOurSpell = KeyBindings.checkIfSpellKeybindClicked(event);
 
         // set last slot active
-        if (!isOurSpell) {SpellData.setLastSlot();}
+        if (!isOurSpell) {SpellData.setSlot();}
     }
 }

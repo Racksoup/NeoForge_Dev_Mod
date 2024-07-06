@@ -8,6 +8,6 @@ public class ModOnMouseScrollHandler {
     public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
 
         // set last slot active
-        SpellData.setLastSlot();
+        SpellData.setSlot();
     }
 }

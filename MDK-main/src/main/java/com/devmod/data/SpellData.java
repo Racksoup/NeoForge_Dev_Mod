@@ -9,9 +9,9 @@ import java.util.TimerTask;
 
 public class SpellData {
     private static boolean GCD = false;
-    private static Integer GCDLength = 600;
-    public static Integer currentSlot = 1;
-    public static Integer lastSlot = 1;
+    private static int GCDLength = 600;
+    public static int slot = 1;
+
 
     public static boolean isGCD() {return GCD;}
 
@@ -42,11 +42,10 @@ public class SpellData {
         }, cdLength);
     }
 
-    public static void setLastSlot() {
+    public static void setSlot() {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null) {
-            lastSlot = currentSlot;
-            currentSlot = mc.player.getInventory().selected;
+            slot = mc.player.getInventory().selected;
         }
     }
 

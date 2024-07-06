@@ -1,7 +1,6 @@
 package com.devmod.utils.spells;
 
 
-import com.devmod.DevMod;
 import com.devmod.data.SpellData;
 import com.devmod.items.ModProjectileWeapon;
 import com.devmod.items.ModSpell;
@@ -29,7 +28,7 @@ public class KeyBindings {
                         ItemStack weaponStack = mc.player.getInventory().getItem(j);
                         if (isWeapon(weaponStack)) {
                             // switch to last item held
-                            mc.player.getInventory().selected = SpellData.lastSlot;
+                            mc.player.getInventory().selected = SpellData.slot;
 
                             // perform action
                             if (!SpellData.isGCD()) {
