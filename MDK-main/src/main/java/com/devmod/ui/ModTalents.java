@@ -154,11 +154,11 @@ public class ModTalents {
         public WarTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        RoleData.WarTree.setT1(!RoleData.WarTree.getT1());
-                        if (RoleData.WarTree.getT1()) {
-                            AttackRange.setRange(RoleData.WarTree.attackRangeLevel1);
+                        RoleData.War.setT1(!RoleData.War.getT1());
+                        if (RoleData.War.getT1()) {
+                            AttackRange.setRange(RoleData.War.attackRangeLevel1);
                         } else {
-                            AttackRange.setRange(RoleData.WarTree.attackRangeDefault);
+                            AttackRange.setRange(RoleData.War.attackRangeDefault);
                         }
                     }, 38, 0);
         }
@@ -194,11 +194,11 @@ public class ModTalents {
         public ShamTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        RoleData.ShamTree.setT1(!RoleData.ShamTree.getT1());
-                        if (RoleData.ShamTree.getT1()) {
-                            MoveSpeed.setPlayerSpeed(RoleData.ShamTree.moveSpeedLevel1);
+                        RoleData.Sham.setT1(!RoleData.Sham.getT1());
+                        if (RoleData.Sham.getT1()) {
+                            MoveSpeed.setPlayerSpeed(RoleData.Sham.moveSpeedLevel1);
                         } else {
-                            MoveSpeed.setPlayerSpeed(RoleData.ShamTree.moveSpeedDefault);
+                            MoveSpeed.setPlayerSpeed(RoleData.Sham.moveSpeedDefault);
                         }
                     }, 55, 0);
         }
@@ -232,7 +232,7 @@ public class ModTalents {
         public MageTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        RoleData.MageTree.setT1(!RoleData.MageTree.getT1());
+                        RoleData.Mage.setT1(!RoleData.Mage.getT1());
                     }, 72, 0);
         }
 

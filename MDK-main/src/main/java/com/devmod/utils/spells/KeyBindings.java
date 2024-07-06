@@ -14,9 +14,9 @@ import net.neoforged.neoforge.client.event.InputEvent;
 
 public class KeyBindings {
 
-    public static void checkForSpellKeybindings(InputEvent.Key event) {
+    public static boolean checkIfSpellKeybindClicked(InputEvent.Key event) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null) return;
+        if (mc.player == null) return false;
         // look through hotbar keybinds
         for (int i = 0; i < 9; i++) {
             // if this is the hotbarkey the player pressed
@@ -28,17 +28,24 @@ public class KeyBindings {
                     for (int j = 0; j < 9; j++) {
                         ItemStack weaponStack = mc.player.getInventory().getItem(j);
                         if (isWeapon(weaponStack)) {
-                            // switch active hotbar slot to weapon
-                            mc.player.getInventory().selected = j;
+                            // switch to last item held
+                            mc.player.getInventory().selected = SpellData.lastSlot;
+
                             // perform action
-                            performSpell(spellStack);
-                            return;
+                            if (!SpellData.isGCD()) {
+                                performSpell(spellStack);
+                            }
+                            return true;
                         }
                     }
-                    return;
+                    // weapon not equip
+                    return false;
                 }
+                // not our spell
+                return false;
             }
         }
+        return false;
     }
 
     public static boolean isSpell(ItemStack itemStack) {
@@ -50,22 +57,22 @@ public class KeyBindings {
     }
 
     public static void performSpell(ItemStack spellStack) {
-        if (SpellData.spellUsable()) {
-            switch (spellStack.getItem().getName(spellStack).getString()) {
-                case "item.dev_mod.spell_charge":
-                    Charge.onCharge();
-                    break;
-                case "item.dev_mod.spell_leash":
-                    // handle spell_leash
-                    break;
-                case "item.dev_mod.spell_blink":
-                    // handle spell_blink
-                    break;
-                // add cases for other spells
-                default:
-                    // handle default case
-                    break;
-            }
+        SpellData.activateGCD();
+        switch (spellStack.getItem().getName(spellStack).getString()) {
+            case "item.dev_mod.spell_charge":
+                Charge.onCharge();
+                break;
+            case "item.dev_mod.spell_leash":
+                // handle spell_leash
+                break;
+            case "item.dev_mod.spell_blink":
+                // handle spell_blink
+                break;
+            // add cases for other spells
+            default:
+                // handle default case
+                break;
         }
+
     }
 }

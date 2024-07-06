@@ -17,21 +17,21 @@ public class Charge {
         Player player = Minecraft.getInstance().player;
 
         // set charge speed
-        if (RoleData.WarTree.chargeCD) {
+        if (RoleData.War.chargeCD) {
             AttributeInstance movementSpeedAttribute = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            movementSpeedAttribute.setBaseValue(RoleData.WarTree.chargeSpeed);
+            movementSpeedAttribute.setBaseValue(RoleData.War.chargeSpeed);
 
             // reset to walk speed
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    DevMod.LOGGER.info("Charging " + player.getDisplayName().getString() + "...");
-                    movementSpeedAttribute.setBaseValue(RoleData.WarTree.walkSpeed);
+                    movementSpeedAttribute.setBaseValue(RoleData.War.walkSpeed);
                 }
-            }, RoleData.WarTree.chargeTime);
+            }, RoleData.War.chargeTime);
 
-            SpellData.activateCD(RoleData.WarTree.setChargeCD(), RoleData.WarTree.chargeCDLength);
+            // activate CD
+            SpellData.activateCD(RoleData.War.setChargeCD(), RoleData.War.chargeCDLength);
         }
     }
 }

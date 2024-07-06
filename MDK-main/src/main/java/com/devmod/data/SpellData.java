@@ -1,26 +1,31 @@
 package com.devmod.data;
 
+import com.devmod.DevMod;
+import net.minecraft.client.Minecraft;
+import net.neoforged.neoforge.client.event.InputEvent;
+
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.function.Function;
 
 public class SpellData {
-    private static boolean spellUsable = true;
-    private static Integer globalCooldown = 600;
+    private static boolean GCD = false;
+    private static Integer GCDLength = 600;
+    public static Integer currentSlot = 1;
+    public static Integer lastSlot = 1;
 
-    public static boolean isSpellUsable() {return spellUsable;}
+    public static boolean isGCD() {return GCD;}
 
-    public static boolean spellUsable() {
-        if (spellUsable) {
-            spellUsable = false;
+    public static boolean activateGCD() {
+        if (GCD) {
+            GCD = true;
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    spellUsable = true;
+                    GCD = false;
                 }
 
-            }, globalCooldown);
+            }, GCDLength);
             return true;
         }
         return false;
@@ -35,6 +40,14 @@ public class SpellData {
                 setter.set(true);
             }
         }, cdLength);
+    }
+
+    public static void setLastSlot() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null) {
+            lastSlot = currentSlot;
+            currentSlot = mc.player.getInventory().selected;
+        }
     }
 
     public interface BooleanSetter {

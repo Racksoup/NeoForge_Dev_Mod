@@ -15,18 +15,18 @@ public class RoleData {
         CompoundTag playerData = player.getPersistentData();
         if (playerData.contains("devMod")) {
             MOD_DATA.merge(playerData.getCompound("devMod"));
-            WarTree.WAR_TREE_DATA.merge(MOD_DATA.getCompound("warTree"));
-            ShamTree.SHAM_TREE_DATA.merge(MOD_DATA.getCompound("shamTree"));
-            MageTree.MAGE_TREE_DATA.merge(MOD_DATA.getCompound("mageTree"));
+            War.WAR_TREE_DATA.merge(MOD_DATA.getCompound("warTree"));
+            Sham.SHAM_TREE_DATA.merge(MOD_DATA.getCompound("shamTree"));
+            Mage.MAGE_TREE_DATA.merge(MOD_DATA.getCompound("mageTree"));
         }
 //        setTalents();
     }
     public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         Player player = event.getEntity();
         CompoundTag playerData = player.getPersistentData();
-        MOD_DATA.put("warTree", WarTree.WAR_TREE_DATA);
-        MOD_DATA.put("shamTree", ShamTree.SHAM_TREE_DATA);
-        MOD_DATA.put("mageTree", MageTree.MAGE_TREE_DATA);
+        MOD_DATA.put("warTree", War.WAR_TREE_DATA);
+        MOD_DATA.put("shamTree", Sham.SHAM_TREE_DATA);
+        MOD_DATA.put("mageTree", Mage.MAGE_TREE_DATA);
         playerData.put("devMod", MOD_DATA);
     }
     public static void onPlayerClone(PlayerEvent.Clone event) {
@@ -54,20 +54,20 @@ public class RoleData {
 
 
     public static void setTalents() {
-        WarTree.resetTalents();
-        ShamTree.resetTalents();
-        MageTree.resetTalents();
+        War.resetTalents();
+        Sham.resetTalents();
+        Mage.resetTalents();
 
         if (RoleData.getCurrentClass().equals("warrior")) {
-            WarTree.setTalents();
+            War.setTalents();
         } else if (RoleData.getCurrentClass().equals("shaman")) {
-            ShamTree.setTalents();
+            Sham.setTalents();
         } else if (RoleData.getCurrentClass().equals("mage")) {
-            MageTree.setTalents();
+            Mage.setTalents();
         }
     }
 
-    public static class WarTree {
+    public static class War {
         private static final CompoundTag WAR_TREE_DATA = new CompoundTag();
 
         public static Double attackRangeLevel1 = 40.0d;
@@ -101,7 +101,7 @@ public class RoleData {
         }
     }
 
-    public static class ShamTree {
+    public static class Sham {
         private static final CompoundTag SHAM_TREE_DATA = new CompoundTag();
 
         public static Double moveSpeedDefault = .1D;
@@ -130,7 +130,7 @@ public class RoleData {
         }
     }
 
-    public static class MageTree {
+    public static class Mage {
         private static final CompoundTag MAGE_TREE_DATA = new CompoundTag();
         public static Double stunChanceLevel1 = 1.0D;
         public static Double stunChanceDefault = 0D;

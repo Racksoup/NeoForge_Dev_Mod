@@ -106,6 +106,7 @@ public class DevMod
         NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::onLivingHurt);
         NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::onKeyInput);
+        NeoForge.EVENT_BUS.addListener(ModOnMouseScrollHandler::onMouseScroll);
     }
 
     @SubscribeEvent

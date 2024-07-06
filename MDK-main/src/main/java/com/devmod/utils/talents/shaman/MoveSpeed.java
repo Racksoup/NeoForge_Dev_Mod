@@ -30,26 +30,26 @@ public class MoveSpeed {
                 return movementSpeedAttribute.getBaseValue();
             }
         }
-        return RoleData.ShamTree.moveSpeedDefault;
+        return RoleData.Sham.moveSpeedDefault;
     }
 
     public static void resetSpeedOnCrouchSprint(PlayerTickEvent.Post event) {
-        if (RoleData.getCurrentClass().equals("shaman") && RoleData.ShamTree.getT1()) {
+        if (RoleData.getCurrentClass().equals("shaman") && RoleData.Sham.getT1()) {
             Player player = event.getEntity();
 
             if (player.isCrouching() && !wasCrouching) {
                 wasCrouching = true;
             } else if (!player.isCrouching() && wasCrouching) {
-                resetSpeed(player, RoleData.ShamTree.moveSpeedLevel1);
+                resetSpeed(player, RoleData.Sham.moveSpeedLevel1);
                 wasCrouching = false;
             }
 
             if (player.isSprinting() && !wasSprinting) {
 
-                resetSpeed(player, RoleData.ShamTree.moveSpeedLevel1 + RoleData.ShamTree.runSpeed);
+                resetSpeed(player, RoleData.Sham.moveSpeedLevel1 + RoleData.Sham.runSpeed);
                 wasSprinting = true;
             } else if (!player.isSprinting() && wasSprinting) {
-                resetSpeed(player, RoleData.ShamTree.moveSpeedLevel1);
+                resetSpeed(player, RoleData.Sham.moveSpeedLevel1);
                 wasCrouching = false;
             }
         }

@@ -20,7 +20,7 @@ public class StunChance {
         }
 
         if (heldItem != null) {
-            if (heldItem.getItem() == ModItems.TEMPERED_STAFF.get() && RoleData.getCurrentClass().equals("mage") && RoleData.MageTree.getT1() && Math.random() < RoleData.MageTree.stunChanceLevel1) {
+            if (heldItem.getItem() == ModItems.TEMPERED_STAFF.get() && RoleData.getCurrentClass().equals("mage") && RoleData.Mage.getT1() && Math.random() < RoleData.Mage.stunChanceLevel1) {
                 event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
             }
         }
