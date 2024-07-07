@@ -15,8 +15,8 @@ public class RoleData {
         CompoundTag playerData = player.getPersistentData();
         if (playerData.contains("devMod")) {
             MOD_DATA.merge(playerData.getCompound("devMod"));
-            War.WAR_TREE_DATA.merge(MOD_DATA.getCompound("warTree"));
-            Sham.SHAM_TREE_DATA.merge(MOD_DATA.getCompound("shamTree"));
+            Warrior.WAR_TREE_DATA.merge(MOD_DATA.getCompound("warTree"));
+            Shaman.SHAM_TREE_DATA.merge(MOD_DATA.getCompound("shamTree"));
             Mage.MAGE_TREE_DATA.merge(MOD_DATA.getCompound("mageTree"));
         }
 //        setTalents();
@@ -24,8 +24,8 @@ public class RoleData {
     public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         Player player = event.getEntity();
         CompoundTag playerData = player.getPersistentData();
-        MOD_DATA.put("warTree", War.WAR_TREE_DATA);
-        MOD_DATA.put("shamTree", Sham.SHAM_TREE_DATA);
+        MOD_DATA.put("warTree", Warrior.WAR_TREE_DATA);
+        MOD_DATA.put("shamTree", Shaman.SHAM_TREE_DATA);
         MOD_DATA.put("mageTree", Mage.MAGE_TREE_DATA);
         playerData.put("devMod", MOD_DATA);
     }
@@ -54,20 +54,20 @@ public class RoleData {
 
 
     public static void setTalents() {
-        War.resetTalents();
-        Sham.resetTalents();
+        Warrior.resetTalents();
+        Shaman.resetTalents();
         Mage.resetTalents();
 
         if (RoleData.getCurrentClass().equals("warrior")) {
-            War.setTalents();
+            Warrior.setTalents();
         } else if (RoleData.getCurrentClass().equals("shaman")) {
-            Sham.setTalents();
+            Shaman.setTalents();
         } else if (RoleData.getCurrentClass().equals("mage")) {
             Mage.setTalents();
         }
     }
 
-    public static class War {
+    public static class Warrior {
         private static final CompoundTag WAR_TREE_DATA = new CompoundTag();
 
         public static Double attackRangeLevel1 = 40.0d;
@@ -101,12 +101,15 @@ public class RoleData {
         }
     }
 
-    public static class Sham {
+    public static class Shaman {
         private static final CompoundTag SHAM_TREE_DATA = new CompoundTag();
 
-        public static Double moveSpeedDefault = .1D;
-        public static Double moveSpeedLevel1 = .1D * 2.0D;
-        public static Double runSpeed = .1D;
+        public static double moveSpeedDefault = .1D;
+        public static double moveSpeedLevel1 = .1D * 2.0D;
+        public static double runSpeed = .1D;
+        public static boolean leashCD = false;
+        public static int leashCDLength = 2 *1000;
+        public static SpellData.BooleanSetter setLeashCD() {return val -> leashCD = val;}
 
         public static Boolean getT1() {
             return SHAM_TREE_DATA.getByte("t1") != (byte) 0;

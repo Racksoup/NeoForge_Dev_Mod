@@ -14,10 +14,10 @@ public class AttackRange {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && RoleData.getCurrentClass().equals("warrior") && RoleData.War.getT1()) {
-            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.War.attackRangeLevel1);
+        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && RoleData.getCurrentClass().equals("warrior") && RoleData.Warrior.getT1()) {
+            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.Warrior.attackRangeLevel1);
         } else {
-            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.War.attackRangeDefault);
+            player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.Warrior.attackRangeDefault);
         }
     }
 

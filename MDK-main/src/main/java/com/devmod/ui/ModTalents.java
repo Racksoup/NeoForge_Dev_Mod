@@ -154,11 +154,11 @@ public class ModTalents {
         public WarTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        RoleData.War.setT1(!RoleData.War.getT1());
-                        if (RoleData.War.getT1()) {
-                            AttackRange.setRange(RoleData.War.attackRangeLevel1);
+                        RoleData.Warrior.setT1(!RoleData.Warrior.getT1());
+                        if (RoleData.Warrior.getT1()) {
+                            AttackRange.setRange(RoleData.Warrior.attackRangeLevel1);
                         } else {
-                            AttackRange.setRange(RoleData.War.attackRangeDefault);
+                            AttackRange.setRange(RoleData.Warrior.attackRangeDefault);
                         }
                     }, 38, 0);
         }
@@ -194,11 +194,11 @@ public class ModTalents {
         public ShamTalents() {
             t1 = new ModTalentButton(16, 16,
                     button -> {
-                        RoleData.Sham.setT1(!RoleData.Sham.getT1());
-                        if (RoleData.Sham.getT1()) {
-                            MoveSpeed.setPlayerSpeed(RoleData.Sham.moveSpeedLevel1);
+                        RoleData.Shaman.setT1(!RoleData.Shaman.getT1());
+                        if (RoleData.Shaman.getT1()) {
+                            MoveSpeed.setPlayerSpeed(RoleData.Shaman.moveSpeedLevel1);
                         } else {
-                            MoveSpeed.setPlayerSpeed(RoleData.Sham.moveSpeedDefault);
+                            MoveSpeed.setPlayerSpeed(RoleData.Shaman.moveSpeedDefault);
                         }
                     }, 55, 0);
         }

@@ -6,6 +6,7 @@ import com.devmod.items.ModProjectileWeapon;
 import com.devmod.items.ModSpell;
 import com.devmod.items.ModSwordItem;
 import com.devmod.utils.spells.mage.Blink;
+import com.devmod.utils.spells.shaman.Leash;
 import com.devmod.utils.spells.warrior.Charge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
@@ -33,7 +34,7 @@ public class KeyBindings {
 
                             // perform action
                             if (!SpellData.isGCD()) {
-                                performSpell(spellStack);
+                                performSpell(spellStack, mc);
                             }
                             return true;
                         }
@@ -56,13 +57,13 @@ public class KeyBindings {
         return itemStack.getItem() instanceof ModProjectileWeapon || itemStack.getItem() instanceof ModSwordItem;
     }
 
-    public static void performSpell(ItemStack spellStack) {
+    public static void performSpell(ItemStack spellStack, Minecraft mc) {
         switch (spellStack.getItem().getName(spellStack).getString()) {
             case "item.dev_mod.spell_charge":
                 Charge.onCharge();
                 break;
             case "item.dev_mod.spell_leash":
-                // handle spell_leash
+                Leash.onLeash(mc.player);
                 break;
             case "item.dev_mod.spell_blink":
                 Blink.onBlink();

@@ -1,8 +1,6 @@
 package com.devmod.data;
 
-import com.devmod.DevMod;
 import net.minecraft.client.Minecraft;
-import net.neoforged.neoforge.client.event.InputEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;

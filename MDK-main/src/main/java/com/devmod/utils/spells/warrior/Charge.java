@@ -15,23 +15,23 @@ public class Charge {
     public static void onCharge() {
         Player player = Minecraft.getInstance().player;
 
-        if (!RoleData.War.chargeCD && RoleData.getCurrentClass().equals("warrior")) {
+        if (!RoleData.Warrior.chargeCD && RoleData.getCurrentClass().equals("warrior")) {
             // set charge speed
             AttributeInstance movementSpeedAttribute = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            movementSpeedAttribute.setBaseValue(RoleData.War.chargeSpeed);
+            movementSpeedAttribute.setBaseValue(RoleData.Warrior.chargeSpeed);
 
             // reset to walk speed
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    movementSpeedAttribute.setBaseValue(RoleData.War.walkSpeed);
+                    movementSpeedAttribute.setBaseValue(RoleData.Warrior.walkSpeed);
                 }
-            }, RoleData.War.chargeTime);
+            }, RoleData.Warrior.chargeTime);
 
             // activate CD
             SpellData.activateGCD();
-            SpellData.activateCD(RoleData.War.setChargeCD(), RoleData.War.chargeCDLength);
+            SpellData.activateCD(RoleData.Warrior.setChargeCD(), RoleData.Warrior.chargeCDLength);
         }
     }
 }
