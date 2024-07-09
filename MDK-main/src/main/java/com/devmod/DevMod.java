@@ -2,6 +2,9 @@ package com.devmod;
 
 import com.devmod.data.RoleData;
 import com.devmod.events.*;
+import com.devmod.items.ArmorMageTier;
+import com.devmod.items.ArmorShamanTier;
+import com.devmod.items.ArmorWarriorTier;
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModItems;
 import com.devmod.registers.ModMenus;
@@ -37,7 +40,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 
-@Mod(DevMod.MODID)
+@Mod(value = DevMod.MODID)
 public class DevMod
 {
     public static final String MODID = "dev_mod";
@@ -52,6 +55,9 @@ public class DevMod
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
         ModMenus.MENUS.register(modEventBus);
+        ArmorShamanTier.SHAMAN_ARMOR_MATERIALS.register(modEventBus);
+        ArmorWarriorTier.WARRIOR_ARMOR_MATERIALS.register(modEventBus);
+        ArmorMageTier.MAGE_ARMOR_MATERIALS.register(modEventBus);
     }
 
     private void registerScreens(RegisterMenuScreensEvent event) {
@@ -62,7 +68,6 @@ public class DevMod
         Player player = event.getEntity();
         Entity entity = event.getTarget();
         Level level = (Level) event.getLevel();
-
         if (event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND) {
             if (entity instanceof Turtle) {
                 ItemStack turtleShellStack = new ItemStack(ModItems.TURTLE_SHELL_ITEM.get());
@@ -74,6 +79,7 @@ public class DevMod
 
     private static void blockBreak(BlockEvent.BreakEvent event) {
         Level level = (Level) event.getLevel();
+
         BlockPos pos = event.getPos();
 
         if (event.getState().getBlock() == Blocks.COAL_BLOCK) {
@@ -97,16 +103,7 @@ public class DevMod
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
 
-        NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogin);
-        NeoForge.EVENT_BUS.addListener(RoleData::onPlayerClone);
-        NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogout);
-        NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
-        NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
-        NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::onPlayerAttack);
-        NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::onPlayerTick);
-        NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::onLivingHurt);
-        NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::onKeyInput);
-        NeoForge.EVENT_BUS.addListener(ModOnMouseScrollHandler::onMouseScroll);
+
     }
 
     @SubscribeEvent
@@ -123,6 +120,18 @@ public class DevMod
         {
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+
+            NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogin);
+            NeoForge.EVENT_BUS.addListener(RoleData::onPlayerClone);
+            NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogout);
+            NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
+            NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
+            NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::onPlayerAttack);
+            NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::onPlayerTick);
+            NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::onLivingHurt);
+            NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::onKeyInput);
+            NeoForge.EVENT_BUS.addListener(ModOnMouseScrollHandler::onMouseScroll);
         }
     }
 }

@@ -104,11 +104,15 @@ public class RoleData {
     public static class Shaman {
         private static final CompoundTag SHAM_TREE_DATA = new CompoundTag();
 
-        public static double moveSpeedDefault = .1D;
-        public static double moveSpeedLevel1 = .1D * 2.0D;
-        public static double runSpeed = .1D;
+        public static double moveSpeedDefault = .1d;
+        public static double moveSpeedLevel1 = .1d * 2.0d;
+        public static double runSpeed = .1d;
         public static boolean leashCD = false;
         public static int leashCDLength = 2 *1000;
+        public static double leashSpeed = .7d;
+        public static int leashTimeToMaxSpeed = (int) Math.floor(1.5d * 1000);
+        public static int leashPeriod = 50;
+        public static double leashStartSpeedPercentage = .3d;
         public static SpellData.BooleanSetter setLeashCD() {return val -> leashCD = val;}
 
         public static Boolean getT1() {

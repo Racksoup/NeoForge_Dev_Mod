@@ -1,5 +1,6 @@
-package com.devmod;
+package com.devmod.items;
 
+import com.devmod.DevMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Tier;

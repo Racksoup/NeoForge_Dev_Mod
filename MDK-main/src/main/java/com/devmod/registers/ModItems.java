@@ -1,14 +1,8 @@
 package com.devmod.registers;
 
 import com.devmod.DevMod;
-import com.devmod.items.ModProjectileWeapon;
-import com.devmod.ModShamanTier;
-import com.devmod.ModTier;
-import com.devmod.items.ModSpell;
-import com.devmod.items.ModSwordItem;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
+import com.devmod.items.*;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -89,4 +83,67 @@ public class ModItems {
             ModSpell::new,
             new ModSpell.Properties()
     );
+
+    // Armor
+    public static final Supplier<ArmorItem> SHAMAN_HELMET = ITEMS.register("armor_shaman_helmet", () -> new ArmorItem(
+            ArmorShamanTier.SHAMAN_ARMOR,
+            ArmorItem.Type.HELMET,
+            new Item.Properties().durability((ArmorItem.Type.HELMET.getDurability(15))
+    )));
+    public static final Supplier<ArmorItem> SHAMAN_CHESTPLATE = ITEMS.register("armor_shaman_chestplate", () -> new ArmorItem(
+            ArmorShamanTier.SHAMAN_ARMOR,
+            ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability((ArmorItem.Type.CHESTPLATE.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> SHAMAN_LEGGINGS = ITEMS.register("armor_shaman_leggings", () -> new ArmorItem(
+            ArmorShamanTier.SHAMAN_ARMOR,
+            ArmorItem.Type.LEGGINGS,
+            new Item.Properties().durability((ArmorItem.Type.LEGGINGS.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> SHAMAN_BOOTS = ITEMS.register("armor_shaman_boots", () -> new ArmorItem(
+            ArmorShamanTier.SHAMAN_ARMOR,
+            ArmorItem.Type.BOOTS,
+            new Item.Properties().durability((ArmorItem.Type.BOOTS.getDurability(15))
+            )));
+
+    public static final Supplier<ArmorItem> MAGE_HELMET = ITEMS.register("armor_mage_helmet", () -> new ArmorItem(
+            ArmorMageTier.MAGE_ARMOR,
+            ArmorItem.Type.HELMET,
+            new Item.Properties().durability((ArmorItem.Type.HELMET.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> MAGE_CHESTPLATE = ITEMS.register("armor_mage_chestplate", () -> new ArmorItem(
+            ArmorMageTier.MAGE_ARMOR,
+            ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability((ArmorItem.Type.CHESTPLATE.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> MAGE_LEGGINGS = ITEMS.register("armor_mage_leggings", () -> new ArmorItem(
+            ArmorMageTier.MAGE_ARMOR,
+            ArmorItem.Type.LEGGINGS,
+            new Item.Properties().durability((ArmorItem.Type.LEGGINGS.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> MAGE_BOOTS = ITEMS.register("armor_mage_boots", () -> new ArmorItem(
+            ArmorMageTier.MAGE_ARMOR,
+            ArmorItem.Type.BOOTS,
+            new Item.Properties().durability((ArmorItem.Type.BOOTS.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> WARRIOR_HELMET = ITEMS.register("armor_warrior_helmet", () -> new ArmorItem(
+            ArmorWarriorTier.WARRIOR_ARMOR,
+            ArmorItem.Type.HELMET,
+            new Item.Properties().durability((ArmorItem.Type.HELMET.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> WARRIOR_CHESTPLATE = ITEMS.register("armor_warrior_chestplate", () -> new ArmorItem(
+            ArmorWarriorTier.WARRIOR_ARMOR,
+            ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability((ArmorItem.Type.CHESTPLATE.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> WARRIOR_LEGGINGS = ITEMS.register("armor_warrior_leggings", () -> new ArmorItem(
+            ArmorWarriorTier.WARRIOR_ARMOR,
+            ArmorItem.Type.LEGGINGS,
+            new Item.Properties().durability((ArmorItem.Type.LEGGINGS.getDurability(15))
+            )));
+    public static final Supplier<ArmorItem> WARRIOR_BOOTS = ITEMS.register("armor_warrior_boots", () -> new ArmorItem(
+            ArmorWarriorTier.WARRIOR_ARMOR,
+            ArmorItem.Type.BOOTS,
+            new Item.Properties().durability((ArmorItem.Type.BOOTS.getDurability(15))
+            )));
 }
