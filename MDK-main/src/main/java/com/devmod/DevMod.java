@@ -55,10 +55,6 @@ public class DevMod
         event.register(ModMenus.MOD_CRAFTING_MENU.get(), ModCraftingScreen::new);
     }
 
-
-
-
-
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         LOGGER.info("HELLO FROM COMMON SETUP");
@@ -66,8 +62,6 @@ public class DevMod
             LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
-
-
     }
 
     @SubscribeEvent
@@ -85,17 +79,16 @@ public class DevMod
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-
             NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogin);
             NeoForge.EVENT_BUS.addListener(RoleData::onPlayerClone);
             NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogout);
             NeoForge.EVENT_BUS.addListener(ModBlockEventBreakEvent::handler);
             NeoForge.EVENT_BUS.addListener(ModPlayerInteractEventEntityInteract::handler);
-            NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::handler);
-            NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::handler);
-            NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::handler);
-            NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::handler);
-            NeoForge.EVENT_BUS.addListener(ModOnMouseScrollHandler::handler);
+            NeoForge.EVENT_BUS.addListener(ModAttackEntityEvent::handler);
+            NeoForge.EVENT_BUS.addListener(ModPlayerTickEventPost::handler);
+            NeoForge.EVENT_BUS.addListener(ModLivingHurtEvent::handler);
+            NeoForge.EVENT_BUS.addListener(ModInputEventKey::handler);
+            NeoForge.EVENT_BUS.addListener(ModInputEventMouseScrollingEvent::handler);
         }
     }
 }

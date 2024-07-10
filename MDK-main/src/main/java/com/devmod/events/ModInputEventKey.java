@@ -4,7 +4,7 @@ import com.devmod.data.SpellData;
 import com.devmod.utils.spells.KeyBindings;
 import net.neoforged.neoforge.client.event.InputEvent;
 
-public class ModKeyBindEventHandler {
+public class ModInputEventKey {
 
     public static void handler(InputEvent.Key event) {
 

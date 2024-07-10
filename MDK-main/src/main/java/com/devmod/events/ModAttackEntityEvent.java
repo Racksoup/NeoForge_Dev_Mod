@@ -4,7 +4,7 @@ import com.devmod.utils.talents.warrior.MeleeRangeIncrease;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 
 
-public class ModPlayerAttackEventHandler {
+public class ModAttackEntityEvent {
 
     public static void handler(AttackEntityEvent event) {
 

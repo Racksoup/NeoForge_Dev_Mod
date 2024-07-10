@@ -3,7 +3,7 @@ package com.devmod.events;
 import com.devmod.utils.talents.shaman.MoveSpeed;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-public class ModPlayerTickEventHandler {
+public class ModPlayerTickEventPost {
 
     public static void handler(PlayerTickEvent.Post event) {
 
