@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "u": {
-      "item": "dev_mod:uranium"
+      "item": "dev_mod:reagent_uranium"
     },
     "i": {
       "item": "minecraft:iron_ingot"
@@ -17,7 +17,7 @@
     "  c"
   ],
   "result": {
-    "id": "dev_mod:neo_battle_axe",
+    "id": "dev_mod:weapon_neo_battle_axe",
     "count": 1
   }
 }

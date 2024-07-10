@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "s": {
-      "item": "dev_mod:stable_water"
+      "item": "dev_mod:reagent_stable_water"
     },
     "c": {
       "item": "minecraft:cherry_planks"
@@ -17,7 +17,7 @@
     "oo"
   ],
   "result": {
-    "id": "dev_mod:tempered_staff",
+    "id": "dev_mod:weapon_tempered_staff",
     "count": 1
   }
 }

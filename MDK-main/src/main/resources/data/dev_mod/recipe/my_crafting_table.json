@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "u": {
-      "item": "dev_mod:uranium"
+      "item": "dev_mod:reagent_uranium"
     },
     "s": {
-      "item": "dev_mod:stable_water"
+      "item": "dev_mod:reagent_stable_water"
     },
     "t": {
-      "item": "dev_mod:turtle_shell"
+      "item": "dev_mod:reagent_turtle_shell"
     },
     "p": {
       "tag": "minecraft:planks"
