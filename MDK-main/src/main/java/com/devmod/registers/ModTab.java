@@ -20,14 +20,14 @@ public class ModTab {
                 output.accept(ModItems.MY_CRAFTING_TABLE_ITEM.get());
 
                 // Crafting Reagents
-                output.accept(ModItems.STABLE_WATER_ITEM.get());
-                output.accept(ModItems.URANIUM_ITEM.get());
-                output.accept(ModItems.TURTLE_SHELL_ITEM.get());
+                output.accept(ModItems.REAGENT_STABLE_WATER_ITEM.get());
+                output.accept(ModItems.REAGENT_URANIUM_ITEM.get());
+                output.accept(ModItems.REAGENT_TURTLE_SHELL_ITEM.get());
 
                 // Weapons
-                output.accept(ModItems.NEO_BATTLE_AXE.get());
-                output.accept(ModItems.URSA_HEART.get());
-                output.accept(ModItems.TEMPERED_STAFF.get());
+                output.accept(ModItems.WEAPON_NEO_BATTLE_AXE.get());
+                output.accept(ModItems.WEAPON_URSA_HEART.get());
+                output.accept(ModItems.WEAPON_TEMPERED_STAFF.get());
 
                 // Spells
                 output.accept(ModItems.SPELL_CHARGE.get());

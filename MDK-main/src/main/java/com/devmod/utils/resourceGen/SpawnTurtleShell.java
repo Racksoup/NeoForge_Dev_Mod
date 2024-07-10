@@ -15,7 +15,7 @@ public class SpawnTurtleShell {
         Level level = (Level) event.getLevel();
         if (event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND) {
             if (entity instanceof Turtle) {
-                ItemStack turtleShellStack = new ItemStack(ModItems.TURTLE_SHELL_ITEM.get());
+                ItemStack turtleShellStack = new ItemStack(ModItems.REAGENT_TURTLE_SHELL_ITEM.get());
                 ItemEntity turtleShellEntity = new ItemEntity(level, entity.xo, entity.yo, entity.zo, turtleShellStack);
                 level.addFreshEntity(turtleShellEntity);
             }

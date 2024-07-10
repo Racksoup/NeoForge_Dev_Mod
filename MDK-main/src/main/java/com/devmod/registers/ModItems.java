@@ -8,7 +8,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModItems {
-    public static final ModShamanTier tier = new ModShamanTier();
+    public static final ModTierShaman tier = new ModTierShaman();
 
     // Items
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(DevMod.MODID);
@@ -22,31 +22,31 @@ public class ModItems {
     );
 
     // Crafting Reagents
-    public static final Supplier<Item> STABLE_WATER_ITEM = ITEMS.registerItem(
-           "stable_water",
+    public static final Supplier<Item> REAGENT_STABLE_WATER_ITEM = ITEMS.registerItem(
+           "reagent_stable_water",
             Item::new,
             new Item.Properties()
     );
-    public static final Supplier<Item> URANIUM_ITEM = ITEMS.registerItem(
-            "uranium",
+    public static final Supplier<Item> REAGENT_URANIUM_ITEM = ITEMS.registerItem(
+            "reagent_uranium",
             Item::new,
             new Item.Properties()
     );
-    public static final Supplier<Item> TURTLE_SHELL_ITEM = ITEMS.registerItem(
-            "turtle_shell",
+    public static final Supplier<Item> REAGENT_TURTLE_SHELL_ITEM = ITEMS.registerItem(
+            "reagent_turtle_shell",
             Item::new,
             new Item.Properties()
     );
 
     // Weapons
-    public static final Supplier<ModProjectileWeapon> TEMPERED_STAFF = ITEMS.register(
-            "tempered_staff",
+    public static final Supplier<ModProjectileWeapon> WEAPON_TEMPERED_STAFF = ITEMS.register(
+            "weapon_tempered_staff",
             () -> new ModProjectileWeapon(
                     new Item.Properties()
             )
 
     );
-    public static final Supplier<ModSwordItem> NEO_BATTLE_AXE = ITEMS.register("neo_battle_axe", () -> new ModSwordItem(
+    public static final Supplier<ModSwordItem> WEAPON_NEO_BATTLE_AXE = ITEMS.register("weapon_neo_battle_axe", () -> new ModSwordItem(
             ModTier.COPPER_TIER,
             new Item.Properties().attributes(
                     SwordItem.createAttributes(
@@ -56,7 +56,7 @@ public class ModItems {
                             )
             )
     ));
-    public static final Supplier<ModSwordItem> URSA_HEART = ITEMS.register("ursa_heart", () -> new ModSwordItem(
+    public static final Supplier<ModSwordItem> WEAPON_URSA_HEART = ITEMS.register("weapon_ursa_heart", () -> new ModSwordItem(
             tier,
             new Item.Properties().attributes(
                     SwordItem.createAttributes(

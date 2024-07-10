@@ -14,7 +14,7 @@ public class MeleeRangeIncrease {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() == ModItems.NEO_BATTLE_AXE.get() && RoleData.getCurrentClass().equals("warrior") && RoleData.Warrior.getT1()) {
+        if (heldItem.getItem() == ModItems.WEAPON_NEO_BATTLE_AXE.get() && RoleData.getCurrentClass().equals("warrior") && RoleData.Warrior.getT1()) {
             player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.Warrior.attackRangeLevel1);
         } else {
             player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(RoleData.Warrior.attackRangeDefault);

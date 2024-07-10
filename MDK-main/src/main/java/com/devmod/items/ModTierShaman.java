@@ -8,14 +8,14 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
-public class ModShamanTier implements Tier {
+public class ModTierShaman implements Tier {
     private final int uses;
     private final float speed;
     private final float attackDamageBonus;
     private final int enchantmentValue;
     private final Ingredient repairIngredient;
 
-    public ModShamanTier() {
+    public ModTierShaman() {
         this.uses = 1000;
         this.speed = 1.0f;
         this.attackDamageBonus = 0;
