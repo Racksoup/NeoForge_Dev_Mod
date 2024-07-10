@@ -10,17 +10,8 @@ import com.devmod.registers.ModItems;
 import com.devmod.registers.ModMenus;
 import com.devmod.registers.ModTab;
 import com.devmod.ui.ModCraftingScreen;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.Turtle;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.neoforge.event.level.BlockEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -64,36 +55,9 @@ public class DevMod
         event.register(ModMenus.MOD_CRAFTING_MENU.get(), ModCraftingScreen::new);
     }
 
-    private static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        Player player = event.getEntity();
-        Entity entity = event.getTarget();
-        Level level = (Level) event.getLevel();
-        if (event.getHand() == net.minecraft.world.InteractionHand.MAIN_HAND) {
-            if (entity instanceof Turtle) {
-                ItemStack turtleShellStack = new ItemStack(ModItems.TURTLE_SHELL_ITEM.get());
-                ItemEntity turtleShellEntity = new ItemEntity(level, entity.xo, entity.yo, entity.zo, turtleShellStack);
-                level.addFreshEntity(turtleShellEntity);
-            }
-        }
-    }
 
-    private static void blockBreak(BlockEvent.BreakEvent event) {
-        Level level = (Level) event.getLevel();
 
-        BlockPos pos = event.getPos();
 
-        if (event.getState().getBlock() == Blocks.COAL_BLOCK) {
-            ItemStack uraniumStack = new ItemStack(ModItems.URANIUM_ITEM.get());
-            ItemEntity uraniumEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), uraniumStack);
-            level.addFreshEntity(uraniumEntity);
-        }
-
-        if (event.getState().getBlock() == Blocks.SNOW) {
-            ItemStack stableWaterStack = new ItemStack(ModItems.STABLE_WATER_ITEM.get());
-            ItemEntity stableWaterEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), stableWaterStack);
-            level.addFreshEntity(stableWaterEntity);
-        }
-    }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
@@ -125,13 +89,13 @@ public class DevMod
             NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogin);
             NeoForge.EVENT_BUS.addListener(RoleData::onPlayerClone);
             NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogout);
-            NeoForge.EVENT_BUS.addListener(DevMod::blockBreak);
-            NeoForge.EVENT_BUS.addListener(DevMod::onEntityInteract);
-            NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::onPlayerAttack);
-            NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::onPlayerTick);
-            NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::onLivingHurt);
-            NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::onKeyInput);
-            NeoForge.EVENT_BUS.addListener(ModOnMouseScrollHandler::onMouseScroll);
+            NeoForge.EVENT_BUS.addListener(ModBlockEventBreakEvent::handler);
+            NeoForge.EVENT_BUS.addListener(ModPlayerInteractEventEntityInteract::handler);
+            NeoForge.EVENT_BUS.addListener(ModPlayerAttackEventHandler::handler);
+            NeoForge.EVENT_BUS.addListener(ModPlayerTickEventHandler::handler);
+            NeoForge.EVENT_BUS.addListener(ModLivingHurtEventHandler::handler);
+            NeoForge.EVENT_BUS.addListener(ModKeyBindEventHandler::handler);
+            NeoForge.EVENT_BUS.addListener(ModOnMouseScrollHandler::handler);
         }
     }
 }

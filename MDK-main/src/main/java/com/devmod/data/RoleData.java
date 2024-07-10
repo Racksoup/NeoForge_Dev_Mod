@@ -1,7 +1,7 @@
 package com.devmod.data;
 
 import com.devmod.utils.talents.shaman.MoveSpeed;
-import com.devmod.utils.talents.warrior.AttackRange;
+import com.devmod.utils.talents.warrior.MeleeRangeIncrease;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
@@ -93,11 +93,11 @@ public class RoleData {
         }
 
         public static void resetTalents() {
-            AttackRange.setRange(attackRangeLevel1);
+            MeleeRangeIncrease.setRange(attackRangeLevel1);
         }
 
         public static void setTalents() {
-            AttackRange.setRange(attackRangeDefault);
+            MeleeRangeIncrease.setRange(attackRangeDefault);
         }
     }
 

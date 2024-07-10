@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 public class Charge {
 
-    public static void onCharge() {
+    public static void cast() {
         Player player = Minecraft.getInstance().player;
 
         if (!RoleData.Warrior.chargeCD && RoleData.getCurrentClass().equals("warrior")) {

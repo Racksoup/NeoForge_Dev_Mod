@@ -5,7 +5,7 @@ import net.neoforged.neoforge.client.event.InputEvent;
 
 public class ModOnMouseScrollHandler {
 
-    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
+    public static void handler(InputEvent.MouseScrollingEvent event) {
 
         // set last slot active
         SpellData.setSlot();

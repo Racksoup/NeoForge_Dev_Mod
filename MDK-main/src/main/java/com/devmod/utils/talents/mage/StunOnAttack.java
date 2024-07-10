@@ -9,9 +9,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 
-public class StunChance {
+public class StunOnAttack {
 
-    public static void stunOnAttack(LivingHurtEvent event) {
+    public static void effect(LivingHurtEvent event) {
         DamageSource source = event.getSource();
         ItemStack heldItem = null;
 

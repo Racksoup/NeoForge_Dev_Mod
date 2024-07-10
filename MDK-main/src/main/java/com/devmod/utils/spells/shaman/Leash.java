@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class Leash {
 
-    public static void onLeash(Player player) {
+    public static void cast(Player player) {
         if (!RoleData.Shaman.leashCD && RoleData.getCurrentClass().equals("shaman")) {
             HitResult target = player.pick(60.0d, 0.0f, false);
             if (target.getType() == HitResult.Type.BLOCK) {

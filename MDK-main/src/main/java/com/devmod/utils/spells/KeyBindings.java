@@ -60,13 +60,13 @@ public class KeyBindings {
     public static void performSpell(ItemStack spellStack, Minecraft mc) {
         switch (spellStack.getItem().getName(spellStack).getString()) {
             case "item.dev_mod.spell_charge":
-                Charge.onCharge();
+                Charge.cast();
                 break;
             case "item.dev_mod.spell_leash":
-                Leash.onLeash(mc.player);
+                Leash.cast(mc.player);
                 break;
             case "item.dev_mod.spell_blink":
-                Blink.onBlink();
+                Blink.cast();
                 break;
             // add cases for other spells
             default:

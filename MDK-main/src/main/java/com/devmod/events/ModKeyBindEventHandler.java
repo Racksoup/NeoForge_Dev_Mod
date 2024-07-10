@@ -6,7 +6,7 @@ import net.neoforged.neoforge.client.event.InputEvent;
 
 public class ModKeyBindEventHandler {
 
-    public static void onKeyInput(InputEvent.Key event) {
+    public static void handler(InputEvent.Key event) {
 
         // get spell keybinds
         boolean isOurSpell = KeyBindings.checkIfSpellKeybindClicked(event);

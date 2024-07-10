@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 public class Blink {
 
-    public static void onBlink() {
+    public static void cast() {
         Player player = Minecraft.getInstance().player;
 
         if (!RoleData.Mage.blinkCD && RoleData.getCurrentClass().equals("mage")) {

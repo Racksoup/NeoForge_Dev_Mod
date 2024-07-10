@@ -1,13 +1,13 @@
 package com.devmod.events;
 
-import com.devmod.utils.talents.mage.StunChance;
+import com.devmod.utils.talents.mage.StunOnAttack;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 
 public class ModLivingHurtEventHandler {
 
-    public static void onLivingHurt(LivingHurtEvent event) {
+    public static void handler(LivingHurtEvent event) {
 
         // Mage Stun Talent
-        StunChance.stunOnAttack(event);
+        StunOnAttack.effect(event);
     }
 }
