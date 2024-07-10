@@ -7,12 +7,12 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-public class MoveSpeed {
+public class IncreaseMoveSpeed {
 
     private static boolean wasCrouching = false;
     private static boolean wasSprinting = false;
 
-    public static void setPlayerSpeed(double speed) {
+    public static void setEffect(double speed) {
         Player player = Minecraft.getInstance().player;
         if (player != null) {
             AttributeInstance movementSpeedAttribute = player.getAttribute(Attributes.MOVEMENT_SPEED);
@@ -33,7 +33,7 @@ public class MoveSpeed {
         return RoleData.Shaman.moveSpeedDefault;
     }
 
-    public static void resetSpeedOnCrouchSprint(PlayerTickEvent.Post event) {
+    public static void setEffectOnCrouchOrSprint(PlayerTickEvent.Post event) {
         if (RoleData.getCurrentClass().equals("shaman") && RoleData.Shaman.getT1()) {
             Player player = event.getEntity();
 

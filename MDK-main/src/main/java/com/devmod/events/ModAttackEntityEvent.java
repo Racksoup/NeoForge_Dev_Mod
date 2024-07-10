@@ -9,6 +9,6 @@ public class ModAttackEntityEvent {
     public static void handler(AttackEntityEvent event) {
 
         // Warrior Attack Range Talent
-        MeleeRangeIncrease.increaseRangeOnAttack(event);
+        MeleeRangeIncrease.effectOnAttack(event);
     }
 }

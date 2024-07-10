@@ -2,7 +2,7 @@ package com.devmod.ui;
 
 import com.devmod.DevMod;
 import com.devmod.data.RoleData;
-import com.devmod.utils.talents.shaman.MoveSpeed;
+import com.devmod.utils.talents.shaman.IncreaseMoveSpeed;
 import com.devmod.utils.talents.warrior.MeleeRangeIncrease;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -156,9 +156,9 @@ public class ModTalents {
                     button -> {
                         RoleData.Warrior.setT1(!RoleData.Warrior.getT1());
                         if (RoleData.Warrior.getT1()) {
-                            MeleeRangeIncrease.setRange(RoleData.Warrior.attackRangeLevel1);
+                            MeleeRangeIncrease.setEffect(RoleData.Warrior.attackRangeLevel1);
                         } else {
-                            MeleeRangeIncrease.setRange(RoleData.Warrior.attackRangeDefault);
+                            MeleeRangeIncrease.setEffect(RoleData.Warrior.attackRangeDefault);
                         }
                     }, 38, 0);
         }
@@ -196,9 +196,9 @@ public class ModTalents {
                     button -> {
                         RoleData.Shaman.setT1(!RoleData.Shaman.getT1());
                         if (RoleData.Shaman.getT1()) {
-                            MoveSpeed.setPlayerSpeed(RoleData.Shaman.moveSpeedLevel1);
+                            IncreaseMoveSpeed.setEffect(RoleData.Shaman.moveSpeedLevel1);
                         } else {
-                            MoveSpeed.setPlayerSpeed(RoleData.Shaman.moveSpeedDefault);
+                            IncreaseMoveSpeed.setEffect(RoleData.Shaman.moveSpeedDefault);
                         }
                     }, 55, 0);
         }

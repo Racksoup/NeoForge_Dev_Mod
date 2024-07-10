@@ -1,6 +1,6 @@
 package com.devmod.events;
 
-import com.devmod.utils.talents.shaman.MoveSpeed;
+import com.devmod.utils.talents.shaman.IncreaseMoveSpeed;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 public class ModPlayerTickEventPost {
@@ -8,6 +8,6 @@ public class ModPlayerTickEventPost {
     public static void handler(PlayerTickEvent.Post event) {
 
         // Shaman Talent 1
-       MoveSpeed.resetSpeedOnCrouchSprint(event);
+       IncreaseMoveSpeed.setEffectOnCrouchOrSprint(event);
     }
 }

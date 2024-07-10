@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 
 public class MeleeRangeIncrease {
 
-    public static void increaseRangeOnAttack(AttackEntityEvent event) {
+    public static void effectOnAttack(AttackEntityEvent event) {
         Player player = event.getEntity();
         ItemStack heldItem = player.getMainHandItem();
 
@@ -21,7 +21,7 @@ public class MeleeRangeIncrease {
         }
     }
 
-    public static void setRange(Double val) {
+    public static void setEffect(Double val) {
         Minecraft.getInstance().player.getAttribute(Attributes.ENTITY_INTERACTION_RANGE).setBaseValue(val);
     }
 }
