@@ -1,0 +1,28 @@
+{
+  "display": {
+    "title": "Dev Mod Crafting Table",
+    "description": "Testing TESTING",
+    "icon": {
+      "id": "dev_mod:my_crafting_table"
+    }
+  },
+  "criteria": {
+    "first_login": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "location": {
+            "position": {
+              "y": {
+                "min": -64
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "recipes": ["dev_mod:my_crafting_table"]
+  }
+}
