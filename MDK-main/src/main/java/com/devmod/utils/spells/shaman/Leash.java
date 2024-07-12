@@ -17,19 +17,24 @@ public class Leash {
     public static void cast(Player player) {
         if (!RoleData.Shaman.leashCD && RoleData.getCurrentClass().equals("shaman")) {
             HitResult target = player.pick(60.0d, 0.0f, false);
+            boolean spellActivated = false;
             if (target.getType() == HitResult.Type.BLOCK) {
+                spellActivated = true;
                 BlockHitResult block = (BlockHitResult) target;
                 Vec3 targetPos = block.getLocation();
                 pullPlayerToTarget(player, targetPos);
             } else if (target.getType() == HitResult.Type.ENTITY) {
+                spellActivated = true;
                 EntityHitResult entity = (EntityHitResult) target;
                 Vec3 targetPos = entity.getLocation();
                 pullPlayerToTarget(player, targetPos);
             }
 
             // activate CD
-            SpellData.activateGCD();
-            SpellData.activateCD(RoleData.Shaman.setLeashCD(), RoleData.Shaman.leashCDLength);
+            if (spellActivated) {
+                SpellData.activateGCD();
+                SpellData.activateCD(RoleData.Shaman.setLeashCD(), RoleData.Shaman.leashCDLength);
+            }
         }
     }
 
