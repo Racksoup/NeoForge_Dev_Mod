@@ -1,5 +1,6 @@
 package com.devmod.utils.spells.shaman;
 
+import com.devmod.DevMod;
 import com.devmod.data.RoleData;
 import com.devmod.data.SpellData;
 import net.minecraft.world.entity.player.Player;
@@ -25,11 +26,11 @@ public class Leash {
                 Vec3 targetPos = entity.getLocation();
                 pullPlayerToTarget(player, targetPos);
             }
-        }
 
-        // activate CD
-        SpellData.activateGCD();
-        SpellData.activateCD(RoleData.Shaman.setLeashCD(), RoleData.Shaman.leashCDLength);
+            // activate CD
+            SpellData.activateGCD();
+            SpellData.activateCD(RoleData.Shaman.setLeashCD(), RoleData.Shaman.leashCDLength);
+        }
     }
 
     private static void pullPlayerToTarget(Player player, Vec3 targetPos) {

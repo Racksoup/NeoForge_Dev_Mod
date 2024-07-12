@@ -1,6 +1,7 @@
 package com.devmod.utils.spells;
 
 
+import com.devmod.DevMod;
 import com.devmod.data.SpellData;
 import com.devmod.items.ModProjectileWeapon;
 import com.devmod.items.ModSpell;
@@ -9,6 +10,8 @@ import com.devmod.utils.spells.mage.Blink;
 import com.devmod.utils.spells.shaman.Leash;
 import com.devmod.utils.spells.warrior.Charge;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.event.InputEvent;
 
@@ -58,14 +61,16 @@ public class KeyBindings {
     }
 
     public static void performSpell(ItemStack spellStack, Minecraft mc) {
-        switch (spellStack.getItem().getName(spellStack).getString()) {
-            case "item.dev_mod.spell_charge":
+        ResourceLocation registryName = BuiltInRegistries.ITEM.getKey(spellStack.getItem());
+        String spellName = registryName.toString();
+        switch (spellName) {
+            case "dev_mod:spell_charge":
                 Charge.cast();
                 break;
-            case "item.dev_mod.spell_leash":
+            case "dev_mod:spell_leash":
                 Leash.cast(mc.player);
                 break;
-            case "item.dev_mod.spell_blink":
+            case "dev_mod:spell_blink":
                 Blink.cast();
                 break;
             // add cases for other spells

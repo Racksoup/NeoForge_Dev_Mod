@@ -1,15 +1,15 @@
 {
-  "description": "Thee Entity",
-  "supported_items": ["dev_mod:weapon_neo_battle_axe"],
+  "description": "Icy Weapon",
+  "supported_items": ["dev_mod:weapon_neo_battle_axe", "dev_mod:weapon_tempered_staff", "dev_mod:weapon_ursa_heart"],
   "weight": 100,
   "max_level": 5,
   "min_cost": {
     "base": 1,
-    "per_level_above_first": 1
+    "per_level_above_first": 0
   },
   "max_cost": {
     "base": 1,
-    "per_level_above_first": 1
+    "per_level_above_first": 0
   },
   "anvil_cost": 1,
   "slots": ["any"],

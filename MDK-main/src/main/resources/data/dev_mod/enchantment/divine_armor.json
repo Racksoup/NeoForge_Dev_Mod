@@ -1,0 +1,39 @@
+{
+  "description": "Divine Armor",
+  "supported_items": [
+    "dev_mod:armor_shaman_helmet",
+    "dev_mod:armor_shaman_chestplate",
+    "dev_mod:armor_shaman_leggings",
+    "dev_mod:armor_shaman_boots",
+    "dev_mod:armor_warrior_helmet",
+    "dev_mod:armor_warrior_chestplate",
+    "dev_mod:armor_warrior_leggings",
+    "dev_mod:armor_warrior_boots",
+    "dev_mod:armor_mage_helmet",
+    "dev_mod:armor_mage_chestplate",
+    "dev_mod:armor_mage_leggings",
+    "dev_mod:armor_mage_boots"
+  ],
+  "weight": 100,
+  "max_level": 5,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 0
+  },
+  "max_cost": {
+    "base": 1,
+    "per_level_above_first": 0
+  },
+  "anvil_cost": 1,
+  "slots": ["any"],
+  "effects": {
+    "minecraft:damage_protection": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": 1
+        }
+      }
+    ]
+  }
+}
