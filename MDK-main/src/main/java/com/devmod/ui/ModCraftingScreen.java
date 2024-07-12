@@ -17,11 +17,12 @@ import java.util.List;
 public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> implements RecipeUpdateListener {
     private ModCraftingScreenButton modButton;
     private ImageButton recipeButton;
-    private boolean bookOpen = false;
+    private static boolean bookOpen = false;
     private boolean wasBookOpen = false;
     private ModTalents modTalents;
     private RecipeBookComponent recipeBookComponent;
     private static final ResourceLocation BG_TEXTURE = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/container/crafting_table.png");
+    private static String bookType = "";
 
     public ModCraftingScreen(ModCraftingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -39,9 +40,11 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
             if (bookOpen) {
                 leftPos = (width - imageWidth) /2;
                 bookOpen = false;
+                bookType = "";
             } else {
                 leftPos = 177 + (width - imageWidth - 200) / 2;
                 bookOpen = true;
+                bookType = "recipe";
             }
         });
 
@@ -50,9 +53,11 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
                     if (bookOpen) {
                         leftPos = (width - imageWidth) /2;
                         bookOpen = false;
+                        bookType = "";
                     } else {
                         leftPos = 177 + (width - imageWidth - 200) / 2;
                         bookOpen = true;
+                        bookType = "talents";
                     }
                 });
         addRenderableWidget(recipeButton);
@@ -164,5 +169,9 @@ public class ModCraftingScreen extends AbstractContainerScreen<ModCraftingMenu> 
         if (bookOpen) {
             modTalents.tabSelect();
         }
+    }
+
+    public static String getBookType() {
+        return bookType;
     }
 }

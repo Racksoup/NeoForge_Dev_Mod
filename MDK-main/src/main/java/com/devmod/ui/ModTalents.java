@@ -74,23 +74,25 @@ public class ModTalents {
         mageTalents.t1.render(pGuiGraphics, pMouseX, pMouseY, 0);
 
         // Render tooltips
-        if (warButton.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Warrior talents"));
-        }
-        if (shamButton.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Shaman talents"));
-        }
-        if (mageButton.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Mage talents"));
-        }
-        if (warTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("+1 Axe Attack Range"));
-        }
-        if (shamTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%10 Move Speed"));
-        }
-        if (mageTalents.t1.isHovered()) {
-            renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%5 Chance To Stun On Hit"));
+        if (ModCraftingScreen.getBookType().equals("talents")) {
+            if (warButton.isHovered()) {
+                renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Warrior talents"));
+            }
+            if (shamButton.isHovered()) {
+                renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Shaman talents"));
+            }
+            if (mageButton.isHovered()) {
+                renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("Mage talents"));
+            }
+            if (warTalents.t1.isHovered()) {
+                renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("+1 Axe Attack Range"));
+            }
+            if (shamTalents.t1.isHovered()) {
+                renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%10 Move Speed"));
+            }
+            if (mageTalents.t1.isHovered()) {
+                renderTooltip(pGuiGraphics, pMouseX, pMouseY, Arrays.asList("%5 Chance To Stun On Hit"));
+            }
         }
     }
 
