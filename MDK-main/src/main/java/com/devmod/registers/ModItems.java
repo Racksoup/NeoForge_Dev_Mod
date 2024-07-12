@@ -85,63 +85,63 @@ public class ModItems {
     );
 
     // Armor
-    public static final Supplier<ArmorItem> SHAMAN_HELMET = ITEMS.register("armor_shaman_helmet", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> SHAMAN_HELMET = ITEMS.register("armor_shaman_helmet", () -> new ModArmorItem(
             ArmorShamanTier.SHAMAN_ARMOR,
             ArmorItem.Type.HELMET,
             new Item.Properties().durability((ArmorItem.Type.HELMET.getDurability(15))
     )));
-    public static final Supplier<ArmorItem> SHAMAN_CHESTPLATE = ITEMS.register("armor_shaman_chestplate", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> SHAMAN_CHESTPLATE = ITEMS.register("armor_shaman_chestplate", () -> new ModArmorItem(
             ArmorShamanTier.SHAMAN_ARMOR,
             ArmorItem.Type.CHESTPLATE,
             new Item.Properties().durability((ArmorItem.Type.CHESTPLATE.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> SHAMAN_LEGGINGS = ITEMS.register("armor_shaman_leggings", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> SHAMAN_LEGGINGS = ITEMS.register("armor_shaman_leggings", () -> new ModArmorItem(
             ArmorShamanTier.SHAMAN_ARMOR,
             ArmorItem.Type.LEGGINGS,
             new Item.Properties().durability((ArmorItem.Type.LEGGINGS.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> SHAMAN_BOOTS = ITEMS.register("armor_shaman_boots", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> SHAMAN_BOOTS = ITEMS.register("armor_shaman_boots", () -> new ModArmorItem(
             ArmorShamanTier.SHAMAN_ARMOR,
             ArmorItem.Type.BOOTS,
             new Item.Properties().durability((ArmorItem.Type.BOOTS.getDurability(15))
             )));
 
-    public static final Supplier<ArmorItem> MAGE_HELMET = ITEMS.register("armor_mage_helmet", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> MAGE_HELMET = ITEMS.register("armor_mage_helmet", () -> new ModArmorItem(
             ArmorMageTier.MAGE_ARMOR,
             ArmorItem.Type.HELMET,
             new Item.Properties().durability((ArmorItem.Type.HELMET.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> MAGE_CHESTPLATE = ITEMS.register("armor_mage_chestplate", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> MAGE_CHESTPLATE = ITEMS.register("armor_mage_chestplate", () -> new ModArmorItem(
             ArmorMageTier.MAGE_ARMOR,
             ArmorItem.Type.CHESTPLATE,
             new Item.Properties().durability((ArmorItem.Type.CHESTPLATE.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> MAGE_LEGGINGS = ITEMS.register("armor_mage_leggings", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> MAGE_LEGGINGS = ITEMS.register("armor_mage_leggings", () -> new ModArmorItem(
             ArmorMageTier.MAGE_ARMOR,
             ArmorItem.Type.LEGGINGS,
             new Item.Properties().durability((ArmorItem.Type.LEGGINGS.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> MAGE_BOOTS = ITEMS.register("armor_mage_boots", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> MAGE_BOOTS = ITEMS.register("armor_mage_boots", () -> new ModArmorItem(
             ArmorMageTier.MAGE_ARMOR,
             ArmorItem.Type.BOOTS,
             new Item.Properties().durability((ArmorItem.Type.BOOTS.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> WARRIOR_HELMET = ITEMS.register("armor_warrior_helmet", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> WARRIOR_HELMET = ITEMS.register("armor_warrior_helmet", () -> new ModArmorItem(
             ArmorWarriorTier.WARRIOR_ARMOR,
             ArmorItem.Type.HELMET,
             new Item.Properties().durability((ArmorItem.Type.HELMET.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> WARRIOR_CHESTPLATE = ITEMS.register("armor_warrior_chestplate", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> WARRIOR_CHESTPLATE = ITEMS.register("armor_warrior_chestplate", () -> new ModArmorItem(
             ArmorWarriorTier.WARRIOR_ARMOR,
             ArmorItem.Type.CHESTPLATE,
             new Item.Properties().durability((ArmorItem.Type.CHESTPLATE.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> WARRIOR_LEGGINGS = ITEMS.register("armor_warrior_leggings", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> WARRIOR_LEGGINGS = ITEMS.register("armor_warrior_leggings", () -> new ModArmorItem(
             ArmorWarriorTier.WARRIOR_ARMOR,
             ArmorItem.Type.LEGGINGS,
             new Item.Properties().durability((ArmorItem.Type.LEGGINGS.getDurability(15))
             )));
-    public static final Supplier<ArmorItem> WARRIOR_BOOTS = ITEMS.register("armor_warrior_boots", () -> new ArmorItem(
+    public static final Supplier<ModArmorItem> WARRIOR_BOOTS = ITEMS.register("armor_warrior_boots", () -> new ModArmorItem(
             ArmorWarriorTier.WARRIOR_ARMOR,
             ArmorItem.Type.BOOTS,
             new Item.Properties().durability((ArmorItem.Type.BOOTS.getDurability(15))

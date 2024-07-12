@@ -1,10 +1,12 @@
 package com.devmod.data;
 
+import com.devmod.registers.ModItems;
 import com.devmod.utils.talents.shaman.IncreaseMoveSpeed;
 import com.devmod.utils.talents.warrior.MeleeRangeIncrease;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 public class RoleData {
@@ -78,6 +80,14 @@ public class RoleData {
         public static boolean chargeCD = false;
         public static SpellData.BooleanSetter setChargeCD() {return val -> chargeCD = val;}
         public static Integer chargeCDLength = 2 *1000;
+        public static Item[] Items = {
+                ModItems.WARRIOR_BOOTS.get(),
+                ModItems.WARRIOR_HELMET.get(),
+                ModItems.WARRIOR_CHESTPLATE.get(),
+                ModItems.WARRIOR_LEGGINGS.get(),
+                ModItems.WEAPON_NEO_BATTLE_AXE.get(),
+                ModItems.SPELL_CHARGE.get(),
+        };
 
         public static Boolean getT1() {
             return WAR_TREE_DATA.getByte("t1") != (byte) 0;
@@ -99,6 +109,8 @@ public class RoleData {
         public static void setTalents() {
             MeleeRangeIncrease.setEffect(attackRangeDefault);
         }
+
+
     }
 
     public static class Shaman {
@@ -114,6 +126,14 @@ public class RoleData {
         public static int leashPeriod = 50;
         public static double leashStartSpeedPercentage = .3d;
         public static SpellData.BooleanSetter setLeashCD() {return val -> leashCD = val;}
+        public static Item[] Items = {
+                ModItems.SHAMAN_BOOTS.get(),
+                ModItems.SHAMAN_HELMET.get(),
+                ModItems.SHAMAN_CHESTPLATE.get(),
+                ModItems.SHAMAN_LEGGINGS.get(),
+                ModItems.WEAPON_URSA_HEART.get(),
+                ModItems.SPELL_LEASH.get(),
+        };
 
         public static Boolean getT1() {
             return SHAM_TREE_DATA.getByte("t1") != (byte) 0;
@@ -147,6 +167,14 @@ public class RoleData {
         public static int blinkTime = (int) Math.floor(.1 *1000);
         public static double walkSpeed = .1;
         public static SpellData.BooleanSetter setBlinkCD() {return val -> blinkCD = val;}
+        public static Item[] Items = {
+                ModItems.MAGE_BOOTS.get(),
+                ModItems.MAGE_HELMET.get(),
+                ModItems.MAGE_CHESTPLATE.get(),
+                ModItems.MAGE_LEGGINGS.get(),
+                ModItems.WEAPON_TEMPERED_STAFF.get(),
+                ModItems.SPELL_BLINK.get(),
+        };
 
         public static Boolean getT1() {
             return MAGE_TREE_DATA.getByte("t1") != (byte) 0;

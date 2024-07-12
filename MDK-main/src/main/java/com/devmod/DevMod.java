@@ -89,6 +89,8 @@ public class DevMod
             NeoForge.EVENT_BUS.addListener(ModLivingHurtEvent::handler);
             NeoForge.EVENT_BUS.addListener(ModInputEventKey::handler);
             NeoForge.EVENT_BUS.addListener(ModInputEventMouseScrollingEvent::handler);
+            NeoForge.EVENT_BUS.addListener(ModPlayerEventPlayerRespawnEvent::handler);
+            NeoForge.EVENT_BUS.addListener(ModItemEntityPickupEventPost::handler);
         }
     }
 }
