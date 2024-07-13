@@ -1,6 +1,5 @@
 package com.devmod.menus;
 
-import com.devmod.registers.ModBlockEntities;
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModMenus;
 import net.minecraft.world.entity.player.Inventory;
@@ -9,17 +8,41 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class ModDeathBoxMenu extends AbstractContainerMenu {
     private ContainerLevelAccess access;
+    private int slotXOffset = 8;
 
     public ModDeathBoxMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, ContainerLevelAccess.NULL);
+        this(containerId, playerInventory, new ItemStackHandler(6 * 9), ContainerLevelAccess.NULL);
     }
 
-    public ModDeathBoxMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
+    public ModDeathBoxMenu(int containerId, Inventory playerInventory, IItemHandler dataInventory,  ContainerLevelAccess access) {
         super(ModMenus.MOD_DEATH_BOX_MENU.get(), containerId);
         this.access = access;
+
+        // add death box slots
+        for (int i = 0; i < dataInventory.getSlots(); ++i) {
+            int posX = i % 9 * 18 + slotXOffset;
+            int posY = i / 9 * 18 + (1 * 18);
+            this.addSlot(new SlotItemHandler(dataInventory, i, posX, posY));
+        }
+
+        // add inventory slots
+        for (int i = 9; i < playerInventory.getContainerSize() -5; ++i) {
+            int posX = i % 9 * 18 + slotXOffset;
+            int posY = i / 9 * 18 + (7 * 18) -5;
+            this.addSlot(new Slot(playerInventory, i, posX, posY));
+        }
+        // add hotbar slots
+        for (int i = 0; i < 9; ++i) {
+            int posX = i % 9 * 18 + slotXOffset;
+            int posY = i / 9 * 18 + (11 * 18) -1;
+            this.addSlot(new Slot(playerInventory, i, posX, posY));
+        }
     }
 
     @Override

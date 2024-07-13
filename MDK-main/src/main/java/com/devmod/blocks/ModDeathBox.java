@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 
 public class ModDeathBox extends ChestBlock {
@@ -42,7 +43,7 @@ public class ModDeathBox extends ChestBlock {
     @Override
     public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
         return new SimpleMenuProvider(
-                (id, playerInventory, playerEntity) -> new ModDeathBoxMenu(id, playerInventory, ContainerLevelAccess.create(pLevel, pPos)), Component.translatable("Mod Death Box")
+                (id, playerInventory, playerEntity) -> new ModDeathBoxMenu(id, playerInventory, new ItemStackHandler(6 * 9), ContainerLevelAccess.create(pLevel, pPos)), Component.translatable("Mod Death Box")
         );
     }
 }
