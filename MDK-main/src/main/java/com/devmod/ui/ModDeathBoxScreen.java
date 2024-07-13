@@ -1,6 +1,5 @@
 package com.devmod.ui;
 
-import com.devmod.DevMod;
 import com.devmod.menus.ModDeathBoxMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -23,7 +22,6 @@ public class ModDeathBoxScreen extends AbstractContainerScreen<ModDeathBoxMenu> 
         this.inventoryLabelX = 8;
         this.inventoryLabelY = 18 * (this.containerRows + 1) + 2;
         this.topPos = (this.height - this.imageHeight) / 4 - 6;
-        DevMod.LOGGER.info("topPos: " + topPos + ", height: " + this.height + ", imageHeight: " + this.imageHeight);
     }
 
     @Override

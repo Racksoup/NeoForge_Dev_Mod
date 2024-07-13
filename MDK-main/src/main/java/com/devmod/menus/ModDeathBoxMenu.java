@@ -45,6 +45,8 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
         }
     }
 
+
+
     @Override
     public boolean stillValid(Player player) {
         return AbstractContainerMenu.stillValid(this.access, player, ModBlocks.MOD_DEATH_BOX_BLOCK.get());
