@@ -120,7 +120,7 @@ public class RoleData {
         public static double moveSpeedLevel1 = .1d * 2.0d;
         public static double runSpeed = .1d;
         public static boolean leashCD = false;
-        public static int leashCDLength = 2 *1000;
+        public static int leashCDLength = 15 * 100;
         public static double leashSpeed = .7d;
         public static int leashTimeToMaxSpeed = (int) Math.floor(1.5d * 1000);
         public static int leashPeriod = 50;

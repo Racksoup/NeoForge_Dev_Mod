@@ -2,14 +2,12 @@ package com.devmod;
 
 import com.devmod.data.RoleData;
 import com.devmod.events.*;
-import com.devmod.items.ArmorMageTier;
-import com.devmod.items.ArmorShamanTier;
-import com.devmod.items.ArmorWarriorTier;
-import com.devmod.registers.ModBlocks;
-import com.devmod.registers.ModItems;
-import com.devmod.registers.ModMenus;
-import com.devmod.registers.ModTab;
+import com.devmod.items.tiers.ArmorMageTier;
+import com.devmod.items.tiers.ArmorShamanTier;
+import com.devmod.items.tiers.ArmorWarriorTier;
+import com.devmod.registers.*;
 import com.devmod.ui.ModCraftingScreen;
+import com.devmod.ui.ModDeathBoxScreen;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -42,6 +40,7 @@ public class DevMod
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerScreens);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModTab.CREATIVE_MODE_TABS.register(modEventBus);
@@ -53,6 +52,7 @@ public class DevMod
 
     private void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenus.MOD_CRAFTING_MENU.get(), ModCraftingScreen::new);
+        event.register(ModMenus.MOD_DEATH_BOX_MENU.get(), ModDeathBoxScreen::new);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)

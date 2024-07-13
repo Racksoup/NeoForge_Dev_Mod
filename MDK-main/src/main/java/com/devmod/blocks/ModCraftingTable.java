@@ -1,6 +1,6 @@
-package com.devmod.items;
+package com.devmod.blocks;
 
-import com.devmod.ui.ModCraftingMenu;
+import com.devmod.menus.ModCraftingMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;

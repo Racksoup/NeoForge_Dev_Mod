@@ -1,4 +1,4 @@
-package com.devmod.items;
+package com.devmod.blocks;
 
 import net.minecraft.world.level.block.Block;
 

@@ -1,14 +1,11 @@
 package com.devmod.utils;
 
-import com.devmod.DevMod;
 import com.devmod.data.RoleData;
 import com.devmod.items.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-
-import java.util.Arrays;
 
 public class HotbarHasWrongClassItems {
     private static ItemStack[] previousHotbar = new ItemStack[9];
@@ -33,7 +30,6 @@ public class HotbarHasWrongClassItems {
     private static void onHotbarSlotChange(ItemStack stack, Player player) {
         Item item = stack.getItem();
         if (item instanceof ModSpell || item instanceof ModSwordItem || item instanceof ModProjectileWeapon || item instanceof ModArmorItem) {
-            DevMod.LOGGER.info("mod item!: {}", item);
 
             boolean isRightClass = false;
             if (RoleData.getCurrentClass().equals("warrior")) {
@@ -58,7 +54,6 @@ public class HotbarHasWrongClassItems {
                 }
             }
 
-            DevMod.LOGGER.info("is right class: {}", isRightClass);
             if (!isRightClass) {
                 // Remove item from hotbar
                 player.getInventory().removeItem(stack);

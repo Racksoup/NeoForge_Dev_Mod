@@ -1,4 +1,4 @@
-package com.devmod.ui;
+package com.devmod.menus;
 
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModMenus;

@@ -1,4 +1,4 @@
-package com.devmod.items;
+package com.devmod.items.tiers;
 
 import com.devmod.DevMod;
 import net.minecraft.resources.ResourceLocation;

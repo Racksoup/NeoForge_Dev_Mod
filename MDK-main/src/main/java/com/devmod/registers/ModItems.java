@@ -2,6 +2,7 @@ package com.devmod.registers;
 
 import com.devmod.DevMod;
 import com.devmod.items.*;
+import com.devmod.items.tiers.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -19,6 +20,10 @@ public class ModItems {
     public static final Supplier<Item> MY_CRAFTING_TABLE_ITEM = ITEMS.register(
             "my_crafting_table",
             () -> new BlockItem(ModBlocks.MY_CRAFTING_TABLE_BLOCK.get(), new Item.Properties())
+    );
+    public static final Supplier<Item> MOD_DEATH_BOX_ITEM = ITEMS.register(
+            "mod_death_box_item",
+            () -> new BlockItem(ModBlocks.MOD_DEATH_BOX_BLOCK.get(), new Item.Properties())
     );
 
     // Crafting Reagents

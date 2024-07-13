@@ -1,4 +1,4 @@
-package com.devmod.items;
+package com.devmod.items.tiers;
 
 import com.devmod.DevMod;
 import net.minecraft.Util;
@@ -15,11 +15,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.EnumMap;
 import java.util.List;
 
-public class ArmorMageTier {
+public class ArmorShamanTier {
 
-    public static final DeferredRegister<ArmorMaterial> MAGE_ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, DevMod.MODID);
-    public static final Holder<ArmorMaterial> MAGE_ARMOR =
-            MAGE_ARMOR_MATERIALS.register("armor_mage", () -> new ArmorMaterial(
+    public static final DeferredRegister<ArmorMaterial> SHAMAN_ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, DevMod.MODID);
+    public static final Holder<ArmorMaterial> SHAMAN_ARMOR =
+            SHAMAN_ARMOR_MATERIALS.register("armor_shaman", () -> new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                         map.put(ArmorItem.Type.BOOTS, 2);
                         map.put(ArmorItem.Type.LEGGINGS, 4);
@@ -36,7 +36,7 @@ public class ArmorMageTier {
                             // - 'assets/mod_id/textures/models/armor/copper_layer_1.png' for the outer texture
                             // - 'assets/mod_id/textures/models/armor/copper_layer_2.png' for the inner texture (only legs)
                             new ArmorMaterial.Layer(
-                                    ResourceLocation.fromNamespaceAndPath(DevMod.MODID, "armor_mage")
+                                    ResourceLocation.fromNamespaceAndPath(DevMod.MODID, "armor_shaman")
                             )
                             // Creates a new armor texture that will be rendered on top of the previous at:
                             // - 'assets/mod_id/textures/models/armor/copper_layer_1_overlay.png' for the outer texture

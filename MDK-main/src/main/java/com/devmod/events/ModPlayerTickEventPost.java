@@ -1,5 +1,6 @@
 package com.devmod.events;
 
+import com.devmod.data.PlayerData;
 import com.devmod.utils.HotbarHasWrongClassItems;
 import com.devmod.utils.talents.shaman.IncreaseMoveSpeed;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -13,5 +14,8 @@ public class ModPlayerTickEventPost {
 
         // check inventory hotbar for wrong class items
         HotbarHasWrongClassItems.checkThenSet(event);
+
+        // set inventory at end so that other stuff can use old inventory from last tick
+        PlayerData.setInventoryOnTick(event);
     }
 }
