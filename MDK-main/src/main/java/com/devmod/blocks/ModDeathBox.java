@@ -1,5 +1,6 @@
 package com.devmod.blocks;
 
+import com.devmod.DevMod;
 import com.devmod.entities.ModDeathBoxBlockEntity;
 import com.devmod.menus.ModDeathBoxMenu;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 
-public class ModDeathBox extends Block implements EntityBlock{
+public class ModDeathBox extends Block implements EntityBlock {
     public ModDeathBox(Properties pProperties) {
         super(pProperties);
     }

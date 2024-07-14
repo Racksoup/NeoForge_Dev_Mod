@@ -15,6 +15,9 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 public class ModDeathBoxMenu extends AbstractContainerMenu {
     private ContainerLevelAccess access;
     private int slotXOffset = 8;
+    private int numSlots;
+    private int dataInventoryNumSlots;
+    private int playerInventoryNumSlots;
 
     public ModDeathBoxMenu(int containerId, Inventory playerInventory) {
         this(containerId, playerInventory, new ItemStackHandler(6 * 9), ContainerLevelAccess.NULL);
@@ -23,6 +26,9 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
     public ModDeathBoxMenu(int containerId, Inventory playerInventory, IItemHandler dataInventory,  ContainerLevelAccess access) {
         super(ModMenus.MOD_DEATH_BOX_MENU.get(), containerId);
         this.access = access;
+        this.numSlots = dataInventory.getSlots() + playerInventory.getContainerSize();
+        this.dataInventoryNumSlots = dataInventory.getSlots();
+        this.playerInventoryNumSlots = playerInventory.getContainerSize();
 
         // add death box slots
         for (int i = 0; i < dataInventory.getSlots(); ++i) {
@@ -30,7 +36,6 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
             int posY = i / 9 * 18 + (1 * 18);
             this.addSlot(new SlotItemHandler(dataInventory, i, posX, posY));
         }
-
         // add inventory slots
         for (int i = 9; i < playerInventory.getContainerSize() -5; ++i) {
             int posX = i % 9 * 18 + slotXOffset;
@@ -82,7 +87,7 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
         // If the quick move was performed on the data inventory result slot
         if (quickMovedSlotIndex == 0) {
             // Try to move the result slot into the player inventory/hotbar
-            if (!this.moveItemStackTo(rawStack, 5, 41, true)) {
+            if (!this.moveItemStackTo(rawStack, dataInventoryNumSlots, numSlots, true)) {
                 // If cannot move, no longer quick move
                 return ItemStack.EMPTY;
             }
@@ -91,25 +96,25 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
             quickMovedSlot.onQuickCraft(rawStack, quickMovedStack);
         }
         // Else if the quick move was performed on the player inventory or hotbar slot
-        else if (quickMovedSlotIndex >= 5 && quickMovedSlotIndex < 41) {
+        else if (quickMovedSlotIndex >= dataInventoryNumSlots && quickMovedSlotIndex < numSlots) {
             // Try to move the inventory/hotbar slot into the data inventory input slots
-            if (!this.moveItemStackTo(rawStack, 1, 5, false)) {
+            if (!this.moveItemStackTo(rawStack, 0, dataInventoryNumSlots, false)) {
                 // If cannot move and in player inventory slot, try to move to hotbar
-                if (quickMovedSlotIndex < 32) {
-                    if (!this.moveItemStackTo(rawStack, 32, 41, false)) {
+                if (quickMovedSlotIndex < numSlots -9) {
+                    if (!this.moveItemStackTo(rawStack, numSlots -9, numSlots, false)) {
                         // If cannot move, no longer quick move
                         return ItemStack.EMPTY;
                     }
                 }
                 // Else try to move hotbar into player inventory slot
-                else if (!this.moveItemStackTo(rawStack, 5, 32, false)) {
+                else if (!this.moveItemStackTo(rawStack, dataInventoryNumSlots, numSlots -9, false)) {
                     // If cannot move, no longer quick move
                     return ItemStack.EMPTY;
                 }
             }
         }
         // Else if the quick move was performed on the data inventory input slots, try to move to player inventory/hotbar
-        else if (!this.moveItemStackTo(rawStack, 5, 41, false)) {
+        else if (!this.moveItemStackTo(rawStack, dataInventoryNumSlots, numSlots -9, false)) {
             // If cannot move, no longer quick move
             return ItemStack.EMPTY;
         }
@@ -121,18 +126,6 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
             // Otherwise, notify the slot that that the stack count has changed
             quickMovedSlot.setChanged();
         }
-
-        /*
-        The following if statement and Slot#onTake call can be removed if the
-        menu does not represent a container that can transform stacks (e.g.
-        chests).
-        */
-        if (rawStack.getCount() == quickMovedStack.getCount()) {
-            // If the raw stack was not able to be moved to another slot, no longer quick move
-            return ItemStack.EMPTY;
-        }
-        // Execute logic on what to do post move with the remaining stack
-        quickMovedSlot.onTake(player, rawStack);
         }
 
         return quickMovedStack; // Return the slot stack
