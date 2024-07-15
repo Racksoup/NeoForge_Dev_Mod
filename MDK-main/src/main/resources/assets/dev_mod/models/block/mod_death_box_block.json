@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "dev_mod:block/my_crafting_table",
+    "all": "dev_mod:block/mod_death_box_block",
     "bottom": "block/birch_planks"
   },
   "elements": [

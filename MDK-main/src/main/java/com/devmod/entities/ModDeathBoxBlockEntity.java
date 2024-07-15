@@ -1,5 +1,6 @@
 package com.devmod.entities;
 
+import com.devmod.DevMod;
 import com.devmod.registers.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -30,29 +31,10 @@ public class ModDeathBoxBlockEntity extends BlockEntity {
         blockData.put("Items", itemHandler.serializeNBT(registries));
     }
 
-    // on server start or level load, put saved items from blockData into itemHandler
+    // on server start or level load, put saved items from blockData into itemHandler for client
     @Override
     protected void loadAdditional(CompoundTag blockData, HolderLookup.Provider registries) {
         super.loadAdditional(blockData, registries);
-        if (blockData.contains("Items")) {
-            itemHandler.deserializeNBT(registries, blockData.getCompound("Items"));
-        }
-    }
-
-    // on server start or level load, returns tag with client blockData. no data on server start, "Items is empty"
-    @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag blockData = super.getUpdateTag(registries);
-        blockData.put("Items", itemHandler.serializeNBT(registries));
-        return blockData;
-    }
-
-    // on server start or level load, does the same as loadAdditional, put saved items from blockData into itemHandler
-    // but i think it's supposed to be a check for the server. so loadAdditional loads the saved blockData.Items for the
-    // client, and handleUpdateTag does the same for the server.
-    @Override
-    public void handleUpdateTag(CompoundTag blockData, HolderLookup.Provider registries) {
-        super.handleUpdateTag(blockData, registries);
         if (blockData.contains("Items")) {
             itemHandler.deserializeNBT(registries, blockData.getCompound("Items"));
         }
