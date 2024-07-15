@@ -4,19 +4,18 @@ import com.devmod.registers.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class ModDeathBoxBlockEntity extends ChestBlockEntity {
-    private CompoundTag items = new CompoundTag();
+
+public class ModDeathBoxBlockEntity extends BlockEntity {
     private final ItemStackHandler itemHandler = new ItemStackHandler(6*9) {
         @Override
         protected void onContentsChanged(int slot) {
+            // on slot change, call setChanged() so server calls saveAdditional, saves data to server
             setChanged();
-            saveItemsToTag(level.registryAccess());
         }
     };
 
@@ -24,51 +23,44 @@ public class ModDeathBoxBlockEntity extends ChestBlockEntity {
         super(ModBlockEntities.MOD_DEATH_BOX_BLOCK_ENTITY.get(), pPos, pBlockState);
     }
 
+    // saves itemHandler into blockData.Items when setChanged() called
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-        this.items = pTag.getCompound("ModDeathBox");
-        loadItemsFromTag(pRegistries);
+    protected void saveAdditional(CompoundTag blockData, HolderLookup.Provider registries) {
+        super.saveAdditional(blockData, registries);
+        blockData.put("Items", itemHandler.serializeNBT(registries));
     }
 
+    // on server start or level load, put saved items from blockData into itemHandler
     @Override
-    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.saveAdditional(pTag, pRegistries);
-        pTag.put("ModDeathBox", this.items);
+    protected void loadAdditional(CompoundTag blockData, HolderLookup.Provider registries) {
+        super.loadAdditional(blockData, registries);
+        if (blockData.contains("Items")) {
+            itemHandler.deserializeNBT(registries, blockData.getCompound("Items"));
+        }
     }
 
-    @Override
-    public void setChanged() {
-        super.setChanged();
-        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 2);
-    }
-//
+    // on server start or level load, returns tag with client blockData. no data on server start, "Items is empty"
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        return this.items;
+        CompoundTag blockData = super.getUpdateTag(registries);
+        blockData.put("Items", itemHandler.serializeNBT(registries));
+        return blockData;
     }
-//
+
+    // on server start or level load, does the same as loadAdditional, put saved items from blockData into itemHandler
+    // but i think it's supposed to be a check for the server. so loadAdditional loads the saved blockData.Items for the
+    // client, and handleUpdateTag does the same for the server.
     @Override
-    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
-        super.handleUpdateTag(tag, lookupProvider);
-        this.items = tag;
-        loadItemsFromTag(lookupProvider);
+    public void handleUpdateTag(CompoundTag blockData, HolderLookup.Provider registries) {
+        super.handleUpdateTag(blockData, registries);
+        if (blockData.contains("Items")) {
+            itemHandler.deserializeNBT(registries, blockData.getCompound("Items"));
+        }
     }
 
     public IItemHandler getItemHandler() {
         return this.itemHandler;
     }
-
-    private void saveItemsToTag(HolderLookup.Provider provider) {
-        items = new CompoundTag();
-        CompoundTag itemHandlerTag = ((INBTSerializable<CompoundTag>) itemHandler).serializeNBT(provider);
-        items.put("ItemHandler", itemHandlerTag);
-    }
-
-    private void loadItemsFromTag(HolderLookup.Provider provider) {
-        if (items.contains("ItemHandler")) {
-            CompoundTag itemHandlerTag = items.getCompound("ItemHandler");
-            ((INBTSerializable<CompoundTag>) itemHandler).deserializeNBT(provider, itemHandlerTag);
-        }
-    }
 }
+
+
