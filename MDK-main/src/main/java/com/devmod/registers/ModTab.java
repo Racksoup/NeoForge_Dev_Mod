@@ -18,6 +18,7 @@ public class ModTab {
             .displayItems((params, output) -> {
                 output.accept(ModItems.MY_BLOCK_ITEM.get());
                 output.accept(ModItems.MY_CRAFTING_TABLE_ITEM.get());
+                output.accept(ModItems.MOD_DEATH_BOX_ITEM.get());
 
                 // Crafting Reagents
                 output.accept(ModItems.REAGENT_STABLE_WATER_ITEM.get());
