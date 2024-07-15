@@ -1,6 +1,5 @@
 package com.devmod.blocks;
 
-import com.devmod.DevMod;
 import com.devmod.entities.ModDeathBoxBlockEntity;
 import com.devmod.menus.ModDeathBoxMenu;
 import net.minecraft.core.BlockPos;

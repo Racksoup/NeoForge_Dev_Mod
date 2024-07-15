@@ -1,5 +1,7 @@
 package com.devmod.menus;
 
+import com.devmod.DevMod;
+import com.devmod.entities.ModDeathBoxBlockEntity;
 import com.devmod.registers.ModBlocks;
 import com.devmod.registers.ModMenus;
 import net.minecraft.world.entity.player.Inventory;
@@ -20,15 +22,15 @@ public class ModDeathBoxMenu extends AbstractContainerMenu {
     private int playerInventoryNumSlots;
 
     public ModDeathBoxMenu(int containerId, Inventory playerInventory) {
-        this(containerId, playerInventory, new ItemStackHandler(6 * 9), ContainerLevelAccess.NULL);
+        this(containerId, playerInventory, new ItemStackHandler(ModDeathBoxBlockEntity.chestSize), ContainerLevelAccess.NULL);
     }
 
     public ModDeathBoxMenu(int containerId, Inventory playerInventory, IItemHandler dataInventory,  ContainerLevelAccess access) {
         super(ModMenus.MOD_DEATH_BOX_MENU.get(), containerId);
         this.access = access;
-        this.numSlots = dataInventory.getSlots() + playerInventory.getContainerSize();
+        this.numSlots = dataInventory.getSlots() + playerInventory.getContainerSize() -5;
         this.dataInventoryNumSlots = dataInventory.getSlots();
-        this.playerInventoryNumSlots = playerInventory.getContainerSize();
+        this.playerInventoryNumSlots = playerInventory.getContainerSize() -5;
 
         // add death box slots
         for (int i = 0; i < dataInventory.getSlots(); ++i) {

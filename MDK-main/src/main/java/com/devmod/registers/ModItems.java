@@ -3,6 +3,8 @@ package com.devmod.registers;
 import com.devmod.DevMod;
 import com.devmod.items.*;
 import com.devmod.items.tiers.*;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -10,6 +12,12 @@ import java.util.function.Supplier;
 
 public class ModItems {
     public static final ModTierShaman tier = new ModTierShaman();
+
+    public static boolean isDevModItem(Item item) {
+        if (item == null) return false;
+        ResourceLocation registryName = BuiltInRegistries.ITEM.getKey(item);
+        return registryName != null && DevMod.MODID.equals(registryName.getNamespace());
+    }
 
     // Items
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(DevMod.MODID);
