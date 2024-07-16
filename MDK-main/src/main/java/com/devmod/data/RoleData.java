@@ -7,50 +7,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 public class RoleData {
-    private static final CompoundTag MOD_DATA = new CompoundTag();
-
-    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        Player player = event.getEntity();
-        CompoundTag playerData = player.getPersistentData();
-        if (playerData.contains("devMod")) {
-            MOD_DATA.merge(playerData.getCompound("devMod"));
-            Warrior.WAR_TREE_DATA.merge(MOD_DATA.getCompound("warTree"));
-            Shaman.SHAM_TREE_DATA.merge(MOD_DATA.getCompound("shamTree"));
-            Mage.MAGE_TREE_DATA.merge(MOD_DATA.getCompound("mageTree"));
-        }
-//        setTalents();
-    }
-    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        Player player = event.getEntity();
-        CompoundTag playerData = player.getPersistentData();
-        MOD_DATA.put("warTree", Warrior.WAR_TREE_DATA);
-        MOD_DATA.put("shamTree", Shaman.SHAM_TREE_DATA);
-        MOD_DATA.put("mageTree", Mage.MAGE_TREE_DATA);
-        playerData.put("devMod", MOD_DATA);
-    }
-    public static void onPlayerClone(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            CompoundTag originalData = event.getOriginal().getPersistentData();
-            CompoundTag newData = event.getEntity().getPersistentData();
-            if (originalData.contains("devMod")) {
-                newData.put("devMod", originalData.getCompound("devMod"));
-            }
-        }
-    }
-
     public static String getCurrentClass() {
-        return MOD_DATA.getString("currentClass");
+        return PlayerData.PLAYER_DATA.getString("currentClass");
     }
     public static void setCurrentClass(String currentClass) {
-        MOD_DATA.putString("currentClass", currentClass);
+        PlayerData.PLAYER_DATA.putString("currentClass", currentClass);
 
         Player player = Minecraft.getInstance().player;
         if (player != null) {
             CompoundTag playerData = player.getPersistentData();
-            playerData.put("devMod", MOD_DATA);
+            playerData.put("devMod", PlayerData.PLAYER_DATA);
         }
     }
 
@@ -70,8 +38,7 @@ public class RoleData {
     }
 
     public static class Warrior {
-        private static final CompoundTag WAR_TREE_DATA = new CompoundTag();
-
+        public static final CompoundTag WAR_TREE_DATA = new CompoundTag();
         public static Double attackRangeLevel1 = 40.0d;
         public static Double attackRangeDefault = 3.0d;
         public static Double chargeSpeed = .7d;
@@ -96,9 +63,9 @@ public class RoleData {
             WAR_TREE_DATA.putByte("t1", (byte) (currentClass ? 1 : 0));
             Player player = Minecraft.getInstance().player;
             if (player != null) {
-                MOD_DATA.put("warTree", WAR_TREE_DATA);
+                PlayerData.PLAYER_DATA.put("warTree", WAR_TREE_DATA);
                 CompoundTag playerData = player.getPersistentData();
-                playerData.put("devMod", MOD_DATA);
+                playerData.put("devMod", PlayerData.PLAYER_DATA);
             }
         }
 
@@ -114,8 +81,7 @@ public class RoleData {
     }
 
     public static class Shaman {
-        private static final CompoundTag SHAM_TREE_DATA = new CompoundTag();
-
+        public static final CompoundTag SHAM_TREE_DATA = new CompoundTag();
         public static double moveSpeedDefault = .1d;
         public static double moveSpeedLevel1 = .1d * 2.0d;
         public static double runSpeed = .1d;
@@ -142,9 +108,9 @@ public class RoleData {
             SHAM_TREE_DATA.putByte("t1", (byte) (currentClass ? 1 : 0));
             Player player = Minecraft.getInstance().player;
             if (player != null) {
-                MOD_DATA.put("shamTree", SHAM_TREE_DATA);
+                PlayerData.PLAYER_DATA.put("shamTree", SHAM_TREE_DATA);
                 CompoundTag playerData = player.getPersistentData();
-                playerData.put("devMod", MOD_DATA);
+                playerData.put("devMod", PlayerData.PLAYER_DATA);
             }
         }
 
@@ -158,7 +124,7 @@ public class RoleData {
     }
 
     public static class Mage {
-        private static final CompoundTag MAGE_TREE_DATA = new CompoundTag();
+        public static final CompoundTag MAGE_TREE_DATA = new CompoundTag();
         public static double stunChanceLevel1 = 0.2D;
         public static double stunChanceDefault = 0D;
         public static boolean blinkCD = false;
@@ -183,9 +149,9 @@ public class RoleData {
             MAGE_TREE_DATA.putByte("t1", (byte) (currentClass ? 1 : 0));
             Player player = Minecraft.getInstance().player;
             if (player != null) {
-                MOD_DATA.put("mageTree", MAGE_TREE_DATA);
+                PlayerData.PLAYER_DATA.put("mageTree", MAGE_TREE_DATA);
                 CompoundTag playerData = player.getPersistentData();
-                playerData.put("devMod", MOD_DATA);
+                playerData.put("devMod", PlayerData.PLAYER_DATA);
             }
         }
 

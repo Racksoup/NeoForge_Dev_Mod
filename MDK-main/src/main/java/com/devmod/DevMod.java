@@ -1,5 +1,6 @@
 package com.devmod;
 
+import com.devmod.data.PlayerData;
 import com.devmod.data.RoleData;
 import com.devmod.events.*;
 import com.devmod.items.tiers.ArmorMageTier;
@@ -79,9 +80,9 @@ public class DevMod
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-            NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogin);
-            NeoForge.EVENT_BUS.addListener(RoleData::onPlayerClone);
-            NeoForge.EVENT_BUS.addListener(RoleData::onPlayerLogout);
+            NeoForge.EVENT_BUS.addListener(PlayerData::onPlayerLogin);
+            NeoForge.EVENT_BUS.addListener(PlayerData::onPlayerClone);
+            NeoForge.EVENT_BUS.addListener(PlayerData::onPlayerLogout);
             NeoForge.EVENT_BUS.addListener(ModBlockEventBreakEvent::handler);
             NeoForge.EVENT_BUS.addListener(ModPlayerInteractEventEntityInteract::handler);
             NeoForge.EVENT_BUS.addListener(ModAttackEntityEvent::handler);

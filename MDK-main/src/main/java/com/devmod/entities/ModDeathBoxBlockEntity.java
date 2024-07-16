@@ -21,7 +21,6 @@ public class ModDeathBoxBlockEntity extends BlockEntity {
         // limit items deathbox accepts to devmod items
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            DevMod.LOGGER.info("hit insertItem ----------------------------------------- :)");
             if (ModItems.isDevModItem(stack.getItem())) {
                 return super.insertItem(slot, stack, simulate);
             }
