@@ -16,17 +16,15 @@ public class ModDeathBoxItem extends BlockItem {
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
         if (!pContext.getLevel().isClientSide()) {
+//            PlayerData.PLAYER_DATA.putBoolean("hasDeathBox", false);
             if (!PlayerData.PLAYER_DATA.contains("hasDeathBox", Tag.TAG_BYTE)) {
-                DevMod.LOGGER.info("No hasDeathBox");
                 PlayerData.PLAYER_DATA.putBoolean("hasDeathBox", true);
                 return super.useOn(pContext);
             }
             if (!PlayerData.PLAYER_DATA.getBoolean("hasDeathBox")) {
-                DevMod.LOGGER.info("hasDeathBox false");
                 PlayerData.PLAYER_DATA.putBoolean("hasDeathBox", true);
                 return super.useOn(pContext);
             }
-            DevMod.LOGGER.info("HasDeathBox true");
             return InteractionResult.FAIL;
         } else {
             return InteractionResult.PASS;

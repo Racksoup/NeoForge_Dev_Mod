@@ -12,9 +12,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
+import java.util.UUID;
+
 
 public class ModDeathBoxBlockEntity extends BlockEntity {
     public static int chestSize = 6*9;
+    private UUID id;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(chestSize) {
 
@@ -36,12 +39,14 @@ public class ModDeathBoxBlockEntity extends BlockEntity {
 
     public ModDeathBoxBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.MOD_DEATH_BOX_BLOCK_ENTITY.get(), pPos, pBlockState);
+        this.id = UUID.randomUUID();
     }
 
     // saves itemHandler into blockData.Items when setChanged() called
     @Override
     protected void saveAdditional(CompoundTag blockData, HolderLookup.Provider registries) {
         super.saveAdditional(blockData, registries);
+        blockData.putUUID("id", id);
         blockData.put("Items", itemHandler.serializeNBT(registries));
     }
 
@@ -49,14 +54,16 @@ public class ModDeathBoxBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag blockData, HolderLookup.Provider registries) {
         super.loadAdditional(blockData, registries);
+        if (blockData.contains("id")) {
+            this.id = blockData.getUUID("id");
+        }
         if (blockData.contains("Items")) {
             itemHandler.deserializeNBT(registries, blockData.getCompound("Items"));
         }
     }
 
-    public IItemHandler getItemHandler() {
-        return this.itemHandler;
-    }
+    public IItemHandler getItemHandler() {return this.itemHandler;}
+    public UUID getId() {return this.id;}
 }
 
 
