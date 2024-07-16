@@ -22,7 +22,7 @@ public class PlayerData {
             RoleData.Shaman.SHAM_TREE_DATA.merge(PLAYER_DATA.getCompound("shamTree"));
             RoleData.Mage.MAGE_TREE_DATA.merge(PLAYER_DATA.getCompound("mageTree"));
         }
-        RoleData.setTalents();
+//        RoleData.setTalents();
     }
     public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         Player player = event.getEntity();

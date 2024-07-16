@@ -1,5 +1,6 @@
 package com.devmod.blocks;
 
+import com.devmod.data.PlayerData;
 import com.devmod.entities.ModDeathBoxBlockEntity;
 import com.devmod.menus.ModDeathBoxMenu;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,6 +23,12 @@ import net.minecraft.world.phys.BlockHitResult;
 public class ModDeathBox extends Block implements EntityBlock {
     public ModDeathBox(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public void destroy(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
+        PlayerData.PLAYER_DATA.putBoolean("hasDeathBox", false);
+        super.destroy(pLevel, pPos, pState);
     }
 
     @Override

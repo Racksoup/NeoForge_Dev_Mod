@@ -22,5 +22,6 @@
   "item.dev_mod.armor_shaman_boots": "Shaman Boots",
   "block.dev_mod.my_block": "Template Block",
   "block.dev_mod.my_crafting_table": "Dev Mod Crafting Table",
+  "block.dev_mod.mod_death_box_block": "Death Box",
   "dev_mod_tab": "Dev Mod Tab"
 }
