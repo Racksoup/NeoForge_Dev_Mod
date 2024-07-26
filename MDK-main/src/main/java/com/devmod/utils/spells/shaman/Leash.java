@@ -1,5 +1,4 @@
 package com.devmod.utils.spells.shaman;
-
 import com.devmod.DevMod;
 import com.devmod.data.RoleData;
 import com.devmod.data.SpellData;

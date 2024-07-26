@@ -62,6 +62,10 @@ public class ModDeathBoxBlockEntity extends BlockEntity {
         }
     }
 
+    public void insertItem(int slot, ItemStack stack) {
+        itemHandler.insertItem(slot, stack, false);
+    }
+
     public IItemHandler getItemHandler() {return this.itemHandler;}
     public UUID getId() {return this.id;}
 }

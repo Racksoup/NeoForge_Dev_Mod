@@ -1,0 +1,11 @@
+[19:14:02] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:14:02] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:14:02] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[19:14:02] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[19:14:02] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:14:02] [main/ERROR]: Failed to start the minecraft server
+java.lang.NullPointerException: Cannot invoke "net.neoforged.fml.loading.LoadingModList.getModLoadingIssues()" because "loadingModList" is null
+	at net.neoforged.fml.ModLoader.gatherAndInitializeMods(ModLoader.java:95) ~[loader-4.0.1.jar:4.0]
+	at net.neoforged.neoforge.internal.CommonModLoader.begin(CommonModLoader.java:47) ~[neoforge-21.0.0-beta.jar:?]
+	at net.neoforged.neoforge.server.loading.ServerModLoader.load(ServerModLoader.java:32) ~[neoforge-21.0.0-beta.jar:?]
+	at net.minecraft.server.Main.main(Main.java:124) [neoforge-21.0.0-beta.jar:?]

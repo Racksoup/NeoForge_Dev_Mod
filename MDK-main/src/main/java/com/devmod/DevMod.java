@@ -1,7 +1,6 @@
 package com.devmod;
 
 import com.devmod.data.PlayerData;
-import com.devmod.data.RoleData;
 import com.devmod.events.*;
 import com.devmod.items.tiers.ArmorMageTier;
 import com.devmod.items.tiers.ArmorShamanTier;
@@ -94,6 +93,7 @@ public class DevMod
             NeoForge.EVENT_BUS.addListener(ModItemEntityPickupEventPost::handler);
         }
     }
+		
 }
 
 

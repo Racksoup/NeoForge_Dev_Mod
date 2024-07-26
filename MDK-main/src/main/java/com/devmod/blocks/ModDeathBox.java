@@ -5,6 +5,7 @@ import com.devmod.data.PlayerData;
 import com.devmod.entities.ModDeathBoxBlockEntity;
 import com.devmod.menus.ModDeathBoxMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
@@ -34,9 +35,11 @@ public class ModDeathBox extends Block implements EntityBlock {
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         if (pLevel.getBlockEntity(pPos) instanceof ModDeathBoxBlockEntity blockEntity) {
             PlayerData.PLAYER_DATA.putUUID("deathBoxUUID", blockEntity.getId());
-            if (pPlacer instanceof Player) {
-                UUID playerUUID = pPlacer.getUUID();
-            }
+            CompoundTag posTag = new CompoundTag();
+            posTag.putInt("x", pPos.getX());
+            posTag.putInt("y", pPos.getY());
+            posTag.putInt("z", pPos.getZ());
+            PlayerData.PLAYER_DATA.put("deathBoxPos", posTag);
         }
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
     }
@@ -46,11 +49,9 @@ public class ModDeathBox extends Block implements EntityBlock {
         if (pLevel.getBlockEntity(pPos) instanceof ModDeathBoxBlockEntity blockEntity) {
             UUID blockUUID = blockEntity.getId();
             UUID savedBlockUUID = PlayerData.PLAYER_DATA.getUUID("deathBoxUUID");
-            if (pLevel.isClientSide) {DevMod.LOGGER.info("client"); } else {DevMod.LOGGER.info("server");}
-
             if (blockUUID.equals(savedBlockUUID)) {
-                PlayerData.PLAYER_DATA.putBoolean("hasDeathBox", false);
                 PlayerData.PLAYER_DATA.remove("deathBoxUUID");
+                PlayerData.PLAYER_DATA.remove("deathBoxPos");
             }
         }
         return super.playerWillDestroy(pLevel, pPos, pState, pPlayer);

@@ -46,9 +46,6 @@ public class PlayerData {
         if (event.getEntity().isAlive()) {
             previousInventory = inventory;
             inventory = event.getEntity().getInventory();
-            for (int i = 0; i < inventory.getContainerSize(); i++) {
-//                DevMod.LOGGER.info("slot: " + i + ", item: " + inventory.getItem(i));
-            }
         }
     }
 }
